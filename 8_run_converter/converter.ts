@@ -45,18 +45,17 @@ class RunConverter
      * @param speed_m_min meters for min
      * @return String, result example '241.9 m/min = 14.514 km/h'
      */
-    MetersMinuteToKilometersPerHour(double speed_m_min) {
+    MetersMinuteToKilometersPerHour(speed_m_min: number) {
         if (speed_m_min <= 0) return "Stop situation";
 
-        return getDoubleValue(String.valueOf((speed_m_min*60) / 1000), 2);
+        return this.getDoubleValue(String((speed_m_min*60) / 1000), 2);
     }
 
     /**
      * @param speed_km_h Add value in kilometers / hour. For Example: 14.5
      * @return String, result example '241.9 m/min = 14.514 km/h'
      */
-    @Override
-    public String KilometersPerHourToMetersMinute(double speed_km_h) {
+    KilometersPerHourToMetersMinute(speed_km_h: number) {
         if (speed_km_h <= 0) return "Stop situation";
         return getDoubleValue(String.valueOf(((speed_km_h/60)*1000)), 2);
     }
@@ -65,18 +64,16 @@ class RunConverter
      * @param speed_m_sec meters for second
      * @return String, result example '4.0316 m/sec = 14.514 km/h'
      */
-    @Override
-    public String MetersSecondToKilometersPerHour(double speed_m_sec) {
+    MetersSecondToKilometersPerHour(speed_m_sec: number) {
 
-        return MetersMinuteToKilometersPerHour(speed_m_sec * 60);
+        return this.MetersMinuteToKilometersPerHour(speed_m_sec * 60);
     }
 
     /**
      * @param speed_km_h Add value in kilometers / hour. For Example: 14.5
      * @return String, result example '4.0316 m/sec = 14.514 km/h'
      */
-    @Override
-    public String KilometersPerHourToMetersSecond(double speed_km_h) {
+    KilometersPerHourToMetersSecond(double speed_km_h) {
         String result_with_m_min = KilometersPerHourToMetersMinute(speed_km_h);
 
         return getDoubleValue(String.valueOf((Double.parseDouble(result_with_m_min.replace(",", ".").trim())) / 60), 2);
@@ -111,8 +108,7 @@ class RunConverter
      * @param pace_min_km MM:SS String value with pace per km. For Example: 04:00 min/km
      * @return String with pace min/km, result example '01:00:00 / 04:00min/km = 15km'
      */
-    @Override
-    public String TimeAndPacePerKmToTotalKilometers(String time, String pace_min_km) {
+    TimeAndPacePerKmToTotalKilometers(time: string, String pace_min_km) {
 
         //Denbora totala segundutan lortzeko
         double sgTotalak=getTimeInSecondsFromTime(time);
@@ -130,19 +126,18 @@ class RunConverter
      * @param pace_min_km MM:SS String value with pace per km. For Example: 04:00 min/km
      * @return String with pace min/km, result example '15km / 04:00min/km = 01:00:00'
      */
-    @Override
-    public String TotalKilometersAndPacePerKmToTime(double km, String pace_min_km) {
+    TotalKilometersAndPacePerKmToTime(km: number, String pace_min_km) {
 
         //total seconds to complete one kilometer (from pace per km)
-        double sgKm=getTimeInSecondsFromPacePerKm(pace_min_km);
+        let sgKm:number = this.getTimeInSecondsFromPacePerKm(pace_min_km);
 
         //Total time to complete x km in x min per km
-        let total_time_in_seconds = (int) (sgKm * km);
+        let total_time_in_seconds = parseInt (sgKm * km);
 
         //Convert total seconds in time format
         let hours = total_time_in_seconds / 3600;
-        int minutes = (total_time_in_seconds % 3600) / 60;
-        int seconds = total_time_in_seconds % 60;
+        let minutes = (total_time_in_seconds % 3600) / 60;
+        let seconds = total_time_in_seconds % 60;
 
         return String.format("%02d:%02d:%02d", hours, minutes, seconds);
     }
@@ -152,8 +147,7 @@ class RunConverter
      * @param total_steps int value. For Example: 12304.
      * @return String with pace min/km, result example '15km / 04:00min/km = 01:00:00'
      */
-    @Override
-    public String StepsPerMinuteFromTotalStepsAndTime(String time, int total_steps) {
+    StepsPerMinuteFromTotalStepsAndTime(time: string, total_steps: number) {
         /******
          * 14500 steps in 1h18min00sg (4680seconds)
          * x steps in minute (60 seconds)
@@ -168,8 +162,7 @@ class RunConverter
      * @param total_steps int value. For Example: 12304.
      * @return String with pace min/km, result example '15km / 04:00min/km = 01:00:00'
      */
-    @Override
-    public String StepsPerKmFromTotalStepsAndDistanceKm(double km, int total_steps) {
+    StepsPerKmFromTotalStepsAndDistanceKm(double km, int total_steps) {
         return String.valueOf((int)(total_steps / km));
     }
 
@@ -177,8 +170,7 @@ class RunConverter
      * @param distance double value to asign total kms to convert. For Example: If value > 5 considerer input meters
      * @return String with vO2max, result example '3850 (metres)-> VO2 max = 74 To calculate: (meters - 504) / 45
      */
-    @Override
-    public String VO2MaxInCooperTest(double distance) {
+    VO2MaxInCooperTest(double distance) {
 
         if (distance < 1000) /*Distance in kmeters*/ distance = getDistanceinMeters(distance);
 
@@ -191,8 +183,7 @@ class RunConverter
      * @param in_km To return value in kilometers instead of meters (default)
      * @return String with distance in meters or km (boolean specific)
      */
-    @Override
-    public String DistanceNeedToObtainSpecificVO2MaxWithCooperTest(double v02, boolean in_km) {
+    DistanceNeedToObtainSpecificVO2MaxWithCooperTest(double v02, boolean in_km) {
         if (!in_km) return String.valueOf((v02*45) + 504);
         return String.valueOf(getDoubleValue(String.valueOf(getDistanceInKms((v02*45) + 504)), 3));
     }
@@ -208,10 +199,9 @@ class RunConverter
      * @param max_fc  max ppm
      * @return Obtain select percent zone ppm range
      */
-    @Override
-    public String ObtainFCZoneWithPercent(int percent, int low_fc, int max_fc) {
+    ObtainFCZoneWithPercent(percent:number, int low_fc, int max_fc) {
 
-        String zone = "Zone " + ((percent - 50) / 10 + 1) + ": ";
+        let zone: string = "Zone " + ((percent - 50) / 10 + 1) + ": ";
         return zone + (((max_fc-low_fc) * (percent)/100) + low_fc) + " - " + (((max_fc-low_fc) * (percent+10) / 100) + low_fc);
     }
 
@@ -220,8 +210,7 @@ class RunConverter
      * @param max_fc max ppm
      * @return FC zones with PPM range
      */
-    @Override
-    public ArrayList<String> ObtainResumeOfFCZones(int low_fc, int max_fc) {
+    ObtainResumeOfFCZones(int low_fc, int max_fc) {
         ArrayList<String> fc_data = new ArrayList<>();
         for (int i = 50; i <= 90; i = i+10)
         {
@@ -234,8 +223,7 @@ class RunConverter
      * @param feets Feets to convert to metres
      * @return Meters
      */
-    @Override
-    public String ConvertFeetsToMeters(int feets) {
+    ConvertFeetsToMeters(int feets) {
         return String.valueOf(feets/3.28084);
     }
 
@@ -243,8 +231,7 @@ class RunConverter
      * @param meters meters to convert to feets
      * @return Feets
      */
-    @Override
-    public String ConvertMetersToFeets(int meters) {
+    ConvertMetersToFeets(int meters) {
         return String.valueOf(meters*3.28084);
     }
 
@@ -252,8 +239,7 @@ class RunConverter
      * @param yards Yards to convert to metres
      * @return Meters
      */
-    @Override
-    public String ConvertYardsToMeters(int yards) {
+    ConvertYardsToMeters(int yards) {
         return String.valueOf(yards/1.0936133333333);
     }
 
@@ -261,19 +247,18 @@ class RunConverter
      * @param meters Meters to convert to yards
      * @return Yards
      */
-    @Override
-    public String ConvertMetersToYards(int meters) {
+    ConvertMetersToYards(meters: number) {
         return String.valueOf(meters*1.0936133333333);
     }
 
 
-    removeDecimalValue(value: number)
+    removeDecimalValue(value)
     {
-        int index = String.valueOf(value).indexOf(".");
+        let index: number = String.(value).indexOf(".");
         return Integer.parseInt(String.valueOf(value).substring(0, index));
     }
 
-    private String getPaceMinKMInCorrectFormat(int min_pace, int sec_pace)
+    getPaceMinKMInCorrectFormat(int min_pace, int sec_pace)
     {
         //Add format to result depending minutes and seconds pace
         if (sec_pace<10 && min_pace < 10) return "0" + min_pace + ":0" + sec_pace;
@@ -282,7 +267,7 @@ class RunConverter
         else return min_pace + ":" +sec_pace;
     }
 
-    private int getTimeInSecondsFromTime(String time)
+    getTimeInSecondsFromTime(String time)
     {
 
         String[] parts = time.split(":");
@@ -294,7 +279,7 @@ class RunConverter
         return (3600 * Integer.parseInt(hour)) + (60 * Integer.parseInt(min)) + Integer.parseInt(sec);
     }
 
-    private int getTimeInSecondsFromPacePerKm(String pace_per_km)
+    getTimeInSecondsFromPacePerKm(pace_per_km:Number)
     {
 
         String[] parts = pace_per_km.split(":");
@@ -305,11 +290,11 @@ class RunConverter
         return (60 * Integer.parseInt(min)) + Integer.parseInt(sec);
     }
     //Round value with specific decimals
-    public static String getDoubleValue(String value,int digit){
+    getDoubleValue(value,digit){
         if(value==null){
             value="0";
         }
-        double i=0;
+        let i: number=0;
         try {
             value = value.replace(",", ".");
             DecimalFormat digitformat = new DecimalFormat("#.##");
@@ -322,15 +307,15 @@ class RunConverter
         }
     }
 
-    private double getDistanceinMeters(double distance)
+    getDistanceinMeters(distance)
     {
-        return distance * 1000;
+        return +distance * 1000;
     }
 
-    private double getDistanceInKms(double meters)
+    getDistanceInKms(meters)
     {
-        return meters / 1000;
+        return +meters / 1000;
     }
 
 
-}
+
