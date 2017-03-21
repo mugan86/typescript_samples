@@ -253,18 +253,20 @@ class RunConverter
      * @return Yards
      */
     ConvertMetersToYards(meters: number) {
-        return String.valueOf(meters*1.0936133333333);
+        return String(meters*1.0936133333333);
     }
 
 
     removeDecimalValue(value)
     {
-        let index: number = String.(value).indexOf(".");
-        return Integer.parseInt(String.valueOf(value).substring(0, index));
+        let index: number = String(value).indexOf(".");
+        return parseInt(String(value).substring(0, index));
     }
 
-    getPaceMinKMInCorrectFormat(int min_pace, int sec_pace)
+    getPaceMinKMInCorrectFormat(min_pace, sec_pace)
     {
+        sec_pace = parseInt(sec_pace);
+        min_pace = parseInt(min_pace);
         //Add format to result depending minutes and seconds pace
         if (sec_pace<10 && min_pace < 10) return "0" + min_pace + ":0" + sec_pace;
         else if (sec_pace>=10 && min_pace<10) return "0" + min_pace + ":" +sec_pace;
