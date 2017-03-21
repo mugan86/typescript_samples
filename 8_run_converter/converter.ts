@@ -125,7 +125,7 @@ class RunConverter
      * @param pace_min_km MM:SS String value with pace per km. For Example: 04:00 min/km
      * @return String with pace min/km, result example '15km / 04:00min/km = 01:00:00'
      */
-    TotalKilometersAndPacePerKmToTime(km: number, String pace_min_km) {
+    TotalKilometersAndPacePerKmToTime(km: number, pace_min_km: string) {
 
         //total seconds to complete one kilometer (from pace per km)
         let sgKm:number = this.getTimeInSecondsFromPacePerKm(pace_min_km);
@@ -153,7 +153,7 @@ class RunConverter
          *
          * x = (14500 * 60) / 4680 = 185,89 step / min
          */
-        return String.valueOf(14500 * 60 /getTimeInSecondsFromTime(time));
+        return String(14500 * 60 /this.getTimeInSecondsFromTime(time));
     }
 
     /**
@@ -161,8 +161,8 @@ class RunConverter
      * @param total_steps int value. For Example: 12304.
      * @return String with pace min/km, result example '15km / 04:00min/km = 01:00:00'
      */
-    StepsPerKmFromTotalStepsAndDistanceKm(double km, int total_steps) {
-        return String.valueOf((int)(total_steps / km));
+    StepsPerKmFromTotalStepsAndDistanceKm(km: number, total_steps) {
+        return String(parseInt(total_steps / km));
     }
 
     /**
