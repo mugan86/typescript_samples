@@ -274,16 +274,16 @@ class RunConverter
         else return min_pace + ":" +sec_pace;
     }
 
-    getTimeInSecondsFromTime(String time)
+    getTimeInSecondsFromTime(time:string)
     {
 
-        String[] parts = time.split(":");
-        String hour = parts[0]; // 004
-        String min = parts[1]; // 034556
-        String sec = parts[2]; // 034556
+        let parts = time.split(":");
+        let hour = parts[0]; // 004
+        let min = parts[1]; // 034556
+        let sec = parts[2]; // 034556
 
         //Total time (in seconds) = (3600*hour) + (60*min) + sec
-        return (3600 * Integer.parseInt(hour)) + (60 * Integer.parseInt(min)) + Integer.parseInt(sec);
+        return (3600 * parseInt(hour)) + (60 * parseInt(min)) + parseInt(sec);
     }
 
     getTimeInSecondsFromPacePerKm(pace_per_km:string)
