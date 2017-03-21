@@ -310,7 +310,7 @@ class RunConverter
 
         } catch (NumberFormatException numberFormatExp) {
             numberFormatExp.printStackTrace();
-            return String.valueOf(i);
+            return String(i);
         }
     }
 
