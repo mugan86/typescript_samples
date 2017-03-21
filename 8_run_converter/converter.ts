@@ -161,19 +161,19 @@ class RunConverter
      * @param total_steps int value. For Example: 12304.
      * @return String with pace min/km, result example '15km / 04:00min/km = 01:00:00'
      */
-    StepsPerKmFromTotalStepsAndDistanceKm(km: number, total_steps) {
-        return String(parseInt(total_steps / km));
+    StepsPerKmFromTotalStepsAndDistanceKm(double km, int total_steps) {
+        return String.valueOf((int)(total_steps / km));
     }
 
     /**
      * @param distance double value to asign total kms to convert. For Example: If value > 5 considerer input meters
      * @return String with vO2max, result example '3850 (metres)-> VO2 max = 74 To calculate: (meters - 504) / 45
      */
-    VO2MaxInCooperTest(double distance) {
+    VO2MaxInCooperTest(distance) {
 
-        if (distance < 1000) /*Distance in kmeters*/ distance = getDistanceinMeters(distance);
+        if (distance < 1000) /*Distance in kmeters*/ distance = this.getDistanceinMeters(distance);
 
-        return getDoubleValue(String.valueOf((distance - 504) / 45), 3);
+        return this.getDoubleValue(String((distance - 504) / 45), 3);
     }
 
     /**
@@ -182,9 +182,9 @@ class RunConverter
      * @param in_km To return value in kilometers instead of meters (default)
      * @return String with distance in meters or km (boolean specific)
      */
-    DistanceNeedToObtainSpecificVO2MaxWithCooperTest(double v02, boolean in_km) {
-        if (!in_km) return String.valueOf((v02*45) + 504);
-        return String.valueOf(getDoubleValue(String.valueOf(getDistanceInKms((v02*45) + 504)), 3));
+    DistanceNeedToObtainSpecificVO2MaxWithCooperTest(v02:number, in_km: boolean) {
+        if (!in_km) return String((v02*45) + 504);
+        return String(this.getDoubleValue((this.getDistanceInKms((v02*45) + 504)), 3));
     }
 
     /**
@@ -198,9 +198,11 @@ class RunConverter
      * @param max_fc  max ppm
      * @return Obtain select percent zone ppm range
      */
-    ObtainFCZoneWithPercent(percent:number, int low_fc, int max_fc) {
+    ObtainFCZoneWithPercent(percent:number, low_fc, max_fc) {
 
         let zone: string = "Zone " + ((percent - 50) / 10 + 1) + ": ";
+        low_fc = parseInt(low_fc);
+        max_fc = parseInt(max_fc);
         return zone + (((max_fc-low_fc) * (percent)/100) + low_fc) + " - " + (((max_fc-low_fc) * (percent+10) / 100) + low_fc);
     }
 
