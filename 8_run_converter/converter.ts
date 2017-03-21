@@ -244,8 +244,8 @@ class RunConverter
      * @param yards Yards to convert to metres
      * @return Meters
      */
-    ConvertYardsToMeters(int yards) {
-        return String.valueOf(yards/1.0936133333333);
+    ConvertYardsToMeters(yards) {
+        return String(parseInt(yards)/1.0936133333333);
     }
 
     /**
