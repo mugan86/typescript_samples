@@ -18,9 +18,9 @@ class RunConverter
         //Get only pace minutes
         let min_pace: number = this.removeDecimalValue(min_sc_km);
         //Get only pace seconds
-        let sec_pace:number = removeDecimalValue(+result_str.substring(index)) * 60);
+        let sec_pace:number = this.removeDecimalValue(+result_str.substring(index)) * 60;
 
-        return getPaceMinKMInCorrectFormat(min_pace, sec_pace);
+        return this.getPaceMinKMInCorrectFormat(min_pace, sec_pace);
     }
 
     /**
@@ -34,11 +34,11 @@ class RunConverter
                 format("Seconds only 0-59 range (Not correct data input: %d minutes - %d seconds", min_pace, sec_pace);*/
 
         //Obtain total time with decimals (min and seconds)
-        let total_time: number = ((double) sec_pace / 60) + min_pace;
+        let total_time: number = (sec_pace / 60) + min_pace;
 
-        double km_h = 60 / total_time;
+        let km_h:number = 60 / total_time;
 
-        return String.valueOf((Math.round(km_h * 100))/100);
+        return String((Math.round(km_h * 100))/100);
     }
 
     /**
@@ -57,7 +57,7 @@ class RunConverter
      */
     KilometersPerHourToMetersMinute(speed_km_h: number) {
         if (speed_km_h <= 0) return "Stop situation";
-        return getDoubleValue(String.valueOf(((speed_km_h/60)*1000)), 2);
+        return this.getDoubleValue(String(((speed_km_h/60)*1000)), 2);
     }
 
     /**
@@ -73,8 +73,8 @@ class RunConverter
      * @param speed_km_h Add value in kilometers / hour. For Example: 14.5
      * @return String, result example '4.0316 m/sec = 14.514 km/h'
      */
-    KilometersPerHourToMetersSecond(double speed_km_h) {
-        String result_with_m_min = KilometersPerHourToMetersMinute(speed_km_h);
+    KilometersPerHourToMetersSecond(speed_km_h: number) {
+        let result_with_m_min = KilometersPerHourToMetersMinute(speed_km_h);
 
         return getDoubleValue(String.valueOf((Double.parseDouble(result_with_m_min.replace(",", ".").trim())) / 60), 2);
     }
@@ -84,23 +84,22 @@ class RunConverter
      * @param km   double value to asign total kms to convert. For Example: 14.0
      * @return String with pace min/km, result example '01:00:00 / 15km = 04:00min/km'
      */
-    @Override
-    public String TimeAndKilometersToPacePerKm(String time, double km) {
+    TimeAndKilometersToPacePerKm(time: string, km: number) {
 
         //Get total time to complete km in seconds
-        double time_complete_km_in_seconds = getTimeInSecondsFromTime(time)/km;
+        let time_complete_km_in_seconds: number = this.getTimeInSecondsFromTime(time)/km;
 
         //Apply rint
-        time_complete_km_in_seconds=Math.rint(time_complete_km_in_seconds);
+        time_complete_km_in_seconds=Math.round(time_complete_km_in_seconds);
 
         //Get min
-        int min_pace = (int) time_complete_km_in_seconds / 60;
+        let min_pace: number = time_complete_km_in_seconds / 60;
 
         //Get seconds to pace per km
-        int sec_pace = (int) time_complete_km_in_seconds % 60;
+        let sec_pace = time_complete_km_in_seconds % 60;
 
         //Return with pretty format
-        return getPaceMinKMInCorrectFormat(min_pace, sec_pace);
+        return this.getPaceMinKMInCorrectFormat(min_pace, sec_pace);
     }
 
     /**
