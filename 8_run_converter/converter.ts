@@ -289,12 +289,12 @@ class RunConverter
     getTimeInSecondsFromPacePerKm(pace_per_km:string)
     {
 
-        String[] parts = pace_per_km.split(":");
-        String min = parts[0]; // 034556
-        String sec = parts[1]; // 034556
+        let parts = pace_per_km.split(":");
+        let min = parts[0]; // 034556
+        let sec = parts[1]; // 034556
 
         //Total time (in seconds) = (3600*hour) + (60*min) + sec
-        return (60 * Integer.parseInt(min)) + Integer.parseInt(sec);
+        return (60 * parseInt(min)) + parseInt(sec);
     }
     //Round value with specific decimals
     getDoubleValue(value,digit){
