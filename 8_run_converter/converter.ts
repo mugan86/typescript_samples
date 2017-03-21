@@ -107,17 +107,17 @@ class RunConverter
      * @param pace_min_km MM:SS String value with pace per km. For Example: 04:00 min/km
      * @return String with pace min/km, result example '01:00:00 / 04:00min/km = 15km'
      */
-    TimeAndPacePerKmToTotalKilometers(time: string, String pace_min_km) {
+    TimeAndPacePerKmToTotalKilometers(time: string, pace_min_km:string) {
 
         //Denbora totala segundutan lortzeko
-        double sgTotalak=getTimeInSecondsFromTime(time);
+        let sgTotalak=this.getTimeInSecondsFromTime(time);
         //Km bateko segundu totalak kalkulatzeko
-        double sgKm=getTimeInSecondsFromPacePerKm(pace_min_km);
+        let sgKm:number=this. getTimeInSecondsFromPacePerKm(pace_min_km);
         //Denbora zehatz batean egin ditugun km kopurua emango da
-        double kilometers= sgTotalak/sgKm;
-        kilometers=Math.rint(kilometers*1000)/1000;
+        let kilometers: number= sgTotalak/sgKm;
+        kilometers=Math.round(kilometers*1000)/1000;
 
-        return getDoubleValue(String.valueOf(kilometers), 2);
+        return this.getDoubleValue(String(kilometers), 2);
     }
 
     /**
@@ -278,7 +278,7 @@ class RunConverter
         return (3600 * Integer.parseInt(hour)) + (60 * Integer.parseInt(min)) + Integer.parseInt(sec);
     }
 
-    getTimeInSecondsFromPacePerKm(pace_per_km:Number)
+    getTimeInSecondsFromPacePerKm(pace_per_km:string)
     {
 
         String[] parts = pace_per_km.split(":");
