@@ -235,8 +235,9 @@ class RunConverter
      * @param meters meters to convert to feets
      * @return Feets
      */
-    ConvertMetersToFeets(int meters) {
-        return String.valueOf(meters*3.28084);
+    ConvertMetersToFeets(meters) {
+        meters = parseInt(meters);
+        return String(meters*3.28084);
     }
 
     /**
