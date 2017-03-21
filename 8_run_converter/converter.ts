@@ -211,11 +211,13 @@ class RunConverter
      * @param max_fc max ppm
      * @return FC zones with PPM range
      */
-    ObtainResumeOfFCZones(int low_fc, int max_fc) {
-        ArrayList<String> fc_data = new ArrayList<>();
-        for (int i = 50; i <= 90; i = i+10)
+    ObtainResumeOfFCZones(low_fc, max_fc) {
+        low_fc = parseInt(low_fc);
+        max_fc = parseInt(max_fc);
+        let fc_data = new Array<String>();
+        for (let i = 50; i <= 90; i = i+10)
         {
-            fc_data.add(ObtainFCZoneWithPercent(i, low_fc, max_fc));
+            fc_data.push(this.ObtainFCZoneWithPercent(i, low_fc, max_fc));
         }
         return fc_data;
     }
@@ -224,8 +226,9 @@ class RunConverter
      * @param feets Feets to convert to metres
      * @return Meters
      */
-    ConvertFeetsToMeters(int feets) {
-        return String.valueOf(feets/3.28084);
+    ConvertFeetsToMeters(feets) {
+        feets = parseInt(feets);
+        return String(feets/3.28084);
     }
 
     /**
