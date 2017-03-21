@@ -74,9 +74,9 @@ class RunConverter
      * @return String, result example '4.0316 m/sec = 14.514 km/h'
      */
     KilometersPerHourToMetersSecond(speed_km_h: number) {
-        let result_with_m_min = KilometersPerHourToMetersMinute(speed_km_h);
+        let result_with_m_min = this.KilometersPerHourToMetersMinute(speed_km_h);
 
-        return getDoubleValue(String.valueOf((Double.parseDouble(result_with_m_min.replace(",", ".").trim())) / 60), 2);
+        return this.getDoubleValue(String((parseFloat(result_with_m_min.replace(",", ".").trim())) / 60), 2);
     }
 
     /**
