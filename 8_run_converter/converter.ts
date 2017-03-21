@@ -128,17 +128,17 @@ class RunConverter
     TotalKilometersAndPacePerKmToTime(km: number, pace_min_km: string) {
 
         //total seconds to complete one kilometer (from pace per km)
-        let sgKm:number = this.getTimeInSecondsFromPacePerKm(pace_min_km);
+        let sgKm = this.getTimeInSecondsFromPacePerKm(pace_min_km);
 
         //Total time to complete x km in x min per km
-        let total_time_in_seconds = parseInt (sgKm * km);
+        let total_time_in_seconds = sgKm * km;
 
         //Convert total seconds in time format
         let hours = total_time_in_seconds / 3600;
         let minutes = (total_time_in_seconds % 3600) / 60;
         let seconds = total_time_in_seconds % 60;
-
-        return String.format("%02d:%02d:%02d", hours, minutes, seconds);
+        return "";
+        //return String.format("%02d:%02d:%02d", hours, minutes, seconds);
     }
 
     /**
