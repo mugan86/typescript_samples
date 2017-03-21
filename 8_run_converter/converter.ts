@@ -161,8 +161,8 @@ class RunConverter
      * @param total_steps int value. For Example: 12304.
      * @return String with pace min/km, result example '15km / 04:00min/km = 01:00:00'
      */
-    StepsPerKmFromTotalStepsAndDistanceKm(double km, int total_steps) {
-        return String.valueOf((int)(total_steps / km));
+    StepsPerKmFromTotalStepsAndDistanceKm(km: number, total_steps) {
+        return String(parseInt(total_steps) / km);
     }
 
     /**
