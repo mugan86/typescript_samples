@@ -298,20 +298,11 @@ class RunConverter
     }
     //Round value with specific decimals
     getDoubleValue(value,digit){
+        let number:number;
         if(value==null){
-            value="0";
+            number=0;
         }
-        let i: number=0;
-        try {
-            value = value.replace(",", ".");
-            DecimalFormat digitformat = new DecimalFormat("#.##");
-            digitformat.setMaximumFractionDigits(digit);
-            return digitformat.format(Double.parseDouble(value)).replace(",", ".");
-
-        } catch (NumberFormatException numberFormatExp) {
-            numberFormatExp.printStackTrace();
-            return String(i);
-        }
+        return (Math.round(number * 100) / 100).toFixed(digit);
     }
 
     getDistanceinMeters(distance)
@@ -323,6 +314,7 @@ class RunConverter
     {
         return +meters / 1000;
     }
+}
 
 
 
