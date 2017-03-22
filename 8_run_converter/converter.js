@@ -104,7 +104,6 @@ var RunConverter = (function () {
         var sgKm = this.getTimeInSecondsFromPacePerKm(pace_min_km);
         //Denbora zehatz batean egin ditugun km kopurua emango da
         var kilometers = sgTotalak / sgKm;
-        kilometers = Math.round(kilometers * 1000) / 1000;
         return this.getDoubleValue(String(Math.round(kilometers * 1000) / 1000), 2);
     };
     /**
@@ -121,7 +120,7 @@ var RunConverter = (function () {
         var hours = total_time_in_seconds / 3600;
         var minutes = (total_time_in_seconds % 3600) / 60;
         var seconds = total_time_in_seconds % 60;
-        return "";
+        return hours + ":" + minutes + ":" + seconds;
         //return String.format("%02d:%02d:%02d", hours, minutes, seconds);
     };
     /**
@@ -287,12 +286,14 @@ console.log("18.9 km/h = " + converter.KilometersPerHourToPaceMinKm(18.9) + " mi
 console.log("4.0316 m/sec = " + converter.MetersSecondToKilometersPerHour(4.0316) + " km/h");
 console.log("241.9 m/min = " + converter.MetersMinuteToKilometersPerHour(241.9) + " km/h");
 console.log("14.514 km/h = " + converter.KilometersPerHourToMetersSecond(14.514) + " m/second");
-console.info("01:20:00 in a 4:00min/km pace: " + converter.TimeAndPacePerKmToTotalKilometers("01:20:00", "04:00") + "km.");
+console.log("01:30:00 in a 4:00min/km pace: " + converter.TimeAndPacePerKmToTotalKilometers("01:30:00", "04:00") + "km.");
+console.log("01:30:00 in a 4:00min/km pace: " + converter.TimeAndPacePerKmToTotalKilometers("01:30:00", "03:00") + "km.");
+console.info("15km in a 4:00min/km pace: " + converter.TotalKilometersAndPacePerKmToTime(15, "04:00"));
 /*
 
 
 
-System.out.println("01:20:00 in a 4:00min/km pace: " + converter.TimeAndPacePerKmToTotalKilometers("01:20:00", "04:30") + "km.");
+
 System.out.println("15km in a 4:00min/km pace: " + converter.TotalKilometersAndPacePerKmToTime(15, "04:00"));
 System.out.println("10km in a 4:00min/km pace: " + converter.TotalKilometersAndPacePerKmToTime(10, "04:00"));
 System.out.println("10km in a 3:31min/km pace: " + converter.TotalKilometersAndPacePerKmToTime(10, "03:31"));
