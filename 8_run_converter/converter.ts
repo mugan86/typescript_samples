@@ -4,7 +4,7 @@ class RunConverter
      * @param speed_km_h : Add value in kilometers / hour. For Example: 14.5
      * @return String, result example '14.5 km/h = 04:08 min/km'
      */
-    
+
     KilometersPerHourToPaceMinKm(speed_km_h: number) {
         //Get pace minutes and seconds
         let min_sc_km:number = 60 / speed_km_h;
@@ -25,13 +25,13 @@ class RunConverter
 
         let min_pace: number = min_sc_km;
         if (index != -1)  min_pace = this.removeDecimalValue(min_sc_km);
-        
+
         console.log(min_pace);
-        
+
         //Get only pace seconds
         let sec_pace: number = 0;
         if (index != -1) sec_pace = this.removeDecimalValue((parseFloat("0" + result_str.substring(index)))*60);
-        
+
         return this.getPaceMinKMInCorrectFormat(min_pace, sec_pace);
     }
 
@@ -59,6 +59,12 @@ class RunConverter
      */
     MetersMinuteToKilometersPerHour(speed_m_min: number) {
         if (speed_m_min <= 0) return "Stop situation";
+
+        console.log(speed_m_min);
+
+        console.info("Meters/s en km/h: " + (speed_m_min*60) / 1000);
+
+
 
         return this.getDoubleValue(String((speed_m_min*60) / 1000), 2);
     }
@@ -315,6 +321,11 @@ class RunConverter
         if(value==null){
             number=0;
         }
+        else
+        {
+          number = value;
+        }
+        console.warn(number);
         return (Math.round(number * 100) / 100).toFixed(digit);
     }
 
@@ -338,14 +349,12 @@ console.log("4:00 min/km = " +converter.PaceMinKmToKilometersPerHour(4, 0) + "km
 console.log("18.9 km/h = " + converter.KilometersPerHourToPaceMinKm(18.9)+ " min/km");
 console.log("4.0316 m/sec = " + converter.MetersSecondToKilometersPerHour(4.0316) + " km/h");
 console.log("241.9 m/min = " + converter.MetersMinuteToKilometersPerHour(241.9) + " km/h");
+console.log("14.514 km/h = " +converter.KilometersPerHourToMetersSecond(14.514) + " m/second");
+console.info("01:20:00 in a 4:00min/km pace: " + converter.TimeAndPacePerKmToTotalKilometers("01:20:00", "04:30") + "km.");
         /*
 
-        
-        System.out.println("3:17 min/km = " +  converter.PaceMinKmToKilometersPerHour(3, 17) + " km/h");
-        System.out.println("241.9 m/min = " + converter.MetersMinuteToKilometersPerHour(241.9) + " km/h");
-        System.out.println("14.514 km/h = " + converter.KilometersPerHourToMetersMinute(14.514) + " m/min");
-        System.out.println("4.0316 m/sec = " + converter.MetersSecondToKilometersPerHour(4.0316) + " km/h");
-        System.out.println("14.514 km/h = " +converter.KilometersPerHourToMetersSecond(14.514) + " m/second");
+
+
         System.out.println("01:20:00 in a 4:00min/km pace: " + converter.TimeAndPacePerKmToTotalKilometers("01:20:00", "04:30") + "km.");
         System.out.println("15km in a 4:00min/km pace: " + converter.TotalKilometersAndPacePerKmToTime(15, "04:00"));
         System.out.println("10km in a 4:00min/km pace: " + converter.TotalKilometersAndPacePerKmToTime(10, "04:00"));

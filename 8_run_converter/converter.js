@@ -47,6 +47,8 @@ var RunConverter = (function () {
     RunConverter.prototype.MetersMinuteToKilometersPerHour = function (speed_m_min) {
         if (speed_m_min <= 0)
             return "Stop situation";
+        console.log(speed_m_min);
+        console.info("Meters/s en km/h: " + (speed_m_min * 60) / 1000);
         return this.getDoubleValue(String((speed_m_min * 60) / 1000), 2);
     };
     /**
@@ -264,6 +266,10 @@ var RunConverter = (function () {
         if (value == null) {
             number = 0;
         }
+        else {
+            number = value;
+        }
+        console.warn(number);
         return (Math.round(number * 100) / 100).toFixed(digit);
     };
     RunConverter.prototype.getDistanceinMeters = function (distance) {
@@ -279,18 +285,14 @@ console.log("15 km/h = " + converter.KilometersPerHourToPaceMinKm(15.0) + " min/
 console.log("4:17 min/km = " + converter.PaceMinKmToKilometersPerHour(4, 17) + "km/h");
 console.log("4:00 min/km = " + converter.PaceMinKmToKilometersPerHour(4, 0) + "km/h");
 console.log("18.9 km/h = " + converter.KilometersPerHourToPaceMinKm(18.9) + " min/km");
-
-//Pending to resolve NaN
 console.log("4.0316 m/sec = " + converter.MetersSecondToKilometersPerHour(4.0316) + " km/h");
 console.log("241.9 m/min = " + converter.MetersMinuteToKilometersPerHour(241.9) + " km/h");
+console.log("14.514 km/h = " + converter.KilometersPerHourToMetersSecond(14.514) + " m/second");
+console.info("01:20:00 in a 4:00min/km pace: " + converter.TimeAndPacePerKmToTotalKilometers("01:20:00", "04:30") + "km.");
 /*
 
 
-System.out.println("3:17 min/km = " +  converter.PaceMinKmToKilometersPerHour(3, 17) + " km/h");
-System.out.println("241.9 m/min = " + converter.MetersMinuteToKilometersPerHour(241.9) + " km/h");
-System.out.println("14.514 km/h = " + converter.KilometersPerHourToMetersMinute(14.514) + " m/min");
-System.out.println("4.0316 m/sec = " + converter.MetersSecondToKilometersPerHour(4.0316) + " km/h");
-System.out.println("14.514 km/h = " +converter.KilometersPerHourToMetersSecond(14.514) + " m/second");
+
 System.out.println("01:20:00 in a 4:00min/km pace: " + converter.TimeAndPacePerKmToTotalKilometers("01:20:00", "04:30") + "km.");
 System.out.println("15km in a 4:00min/km pace: " + converter.TotalKilometersAndPacePerKmToTime(15, "04:00"));
 System.out.println("10km in a 4:00min/km pace: " + converter.TotalKilometersAndPacePerKmToTime(10, "04:00"));
