@@ -274,8 +274,10 @@ var RunConverter = (function () {
     };
     return RunConverter;
 }());
-var runconv = new RunConverter();
-console.log("15 km/h = " + runconv.KilometersPerHourToPaceMinKm(15.0) + " min/km");
+var converter = new RunConverter();
+console.log("15 km/h = " + converter.KilometersPerHourToPaceMinKm(15.0) + " min/km");
+console.log("4:17 min/km = " + converter.PaceMinKmToKilometersPerHour(4, 17) + "km/h");
+console.log("4:00 min/km = " + converter.PaceMinKmToKilometersPerHour(4, 0) + "km/h");
 /*System.out.println("4:17 min/km = " +converter.PaceMinKmToKilometersPerHour(4, 17) + "km/h");
 
 System.out.println("18.9 km/h = " + converter.KilometersPerHourToPaceMinKm(18.9)+ " min/km");
