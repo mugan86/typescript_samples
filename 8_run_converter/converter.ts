@@ -333,12 +333,14 @@ let converter = new RunConverter();
 
 
 console.log("15 km/h = " + converter.KilometersPerHourToPaceMinKm(15.0)  + " min/km");
-console.log("4:17 min/km = " +converter.PaceMinKmToKilometersPerHour(4, 17) + "km/h")
-console.log("4:00 min/km = " +converter.PaceMinKmToKilometersPerHour(4, 0) + "km/h")
+console.log("4:17 min/km = " +converter.PaceMinKmToKilometersPerHour(4, 17) + "km/h");
+console.log("4:00 min/km = " +converter.PaceMinKmToKilometersPerHour(4, 0) + "km/h");
+console.log("18.9 km/h = " + converter.KilometersPerHourToPaceMinKm(18.9)+ " min/km");
+console.log("4.0316 m/sec = " + converter.MetersSecondToKilometersPerHour(4.0316) + " km/h");
+console.log("241.9 m/min = " + converter.MetersMinuteToKilometersPerHour(241.9) + " km/h");
+        /*
 
-        /*System.out.println("4:17 min/km = " +converter.PaceMinKmToKilometersPerHour(4, 17) + "km/h");
-
-        System.out.println("18.9 km/h = " + converter.KilometersPerHourToPaceMinKm(18.9)+ " min/km");
+        
         System.out.println("3:17 min/km = " +  converter.PaceMinKmToKilometersPerHour(3, 17) + " km/h");
         System.out.println("241.9 m/min = " + converter.MetersMinuteToKilometersPerHour(241.9) + " km/h");
         System.out.println("14.514 km/h = " + converter.KilometersPerHourToMetersMinute(14.514) + " m/min");
