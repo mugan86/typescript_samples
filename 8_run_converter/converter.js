@@ -100,12 +100,12 @@ var RunConverter = (function () {
     RunConverter.prototype.TimeAndPacePerKmToTotalKilometers = function (time, pace_min_km) {
         //Denbora totala segundutan lortzeko
         var sgTotalak = this.getTimeInSecondsFromTime(time);
-        //Km bateko segundu totalak kalkulatzeko
+        //Get one km complete in seconds
         var sgKm = this.getTimeInSecondsFromPacePerKm(pace_min_km);
         //Denbora zehatz batean egin ditugun km kopurua emango da
         var kilometers = sgTotalak / sgKm;
         kilometers = Math.round(kilometers * 1000) / 1000;
-        return this.getDoubleValue(String(kilometers), 2);
+        return this.getDoubleValue(String(Math.round(kilometers * 1000) / 1000), 2);
     };
     /**
      * @param km          double value to asign total kms to convert. For Example: 14.0
@@ -254,22 +254,21 @@ var RunConverter = (function () {
         return (3600 * parseInt(hour)) + (60 * parseInt(min)) + parseInt(sec);
     };
     RunConverter.prototype.getTimeInSecondsFromPacePerKm = function (pace_per_km) {
+        console.log(pace_per_km);
         var parts = pace_per_km.split(":");
         var min = parts[0]; // 034556
         var sec = parts[1]; // 034556
+        console.warn("MIN: " + min + " / SEC: " + sec);
         //Total time (in seconds) = (3600*hour) + (60*min) + sec
         return (60 * parseInt(min)) + parseInt(sec);
     };
     //Round value with specific decimals
     RunConverter.prototype.getDoubleValue = function (value, digit) {
         var number;
-        if (value == null) {
+        if (value == null)
             number = 0;
-        }
-        else {
+        else
             number = value;
-        }
-        console.warn(number);
         return (Math.round(number * 100) / 100).toFixed(digit);
     };
     RunConverter.prototype.getDistanceinMeters = function (distance) {
@@ -288,7 +287,7 @@ console.log("18.9 km/h = " + converter.KilometersPerHourToPaceMinKm(18.9) + " mi
 console.log("4.0316 m/sec = " + converter.MetersSecondToKilometersPerHour(4.0316) + " km/h");
 console.log("241.9 m/min = " + converter.MetersMinuteToKilometersPerHour(241.9) + " km/h");
 console.log("14.514 km/h = " + converter.KilometersPerHourToMetersSecond(14.514) + " m/second");
-console.info("01:20:00 in a 4:00min/km pace: " + converter.TimeAndPacePerKmToTotalKilometers("01:20:00", "04:30") + "km.");
+console.info("01:20:00 in a 4:00min/km pace: " + converter.TimeAndPacePerKmToTotalKilometers("01:20:00", "04:00") + "km.");
 /*
 
 
