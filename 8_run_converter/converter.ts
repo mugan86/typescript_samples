@@ -9,17 +9,36 @@ class RunConverter
         //Get pace minutes and seconds
         let min_sc_km:number = 60 / speed_km_h;
 
+        console.log(min_sc_km);
+
         //Convert String
         let result_str:string = String(min_sc_km);
+
+        console.log(result_str);
 
         //Get decimal value
         let index: number = result_str.indexOf(".");
 
-        //Get only pace minutes
-        let min_pace: number = this.removeDecimalValue(min_sc_km);
-        //Get only pace seconds
-        let sec_pace:number = this.removeDecimalValue(+result_str.substring(index)) * 60;
+        console.log("INDEX: " + index);
 
+        //Get only pace minutes
+
+        let min_pace: number = min_sc_km;
+        if (index != -1)
+        {
+            min_pace = this.removeDecimalValue(min_sc_km);
+        }
+        
+
+        console.log(min_pace);
+        
+        //Get only pace seconds
+        let sec_pace: number = 0;
+        if (index != -1)
+        {
+            sec_pace = parseFloat("0" + result_str.substring(index));
+            sec_pace = this.removeDecimalValue(sec_pace*60);
+        }
         return this.getPaceMinKMInCorrectFormat(min_pace, sec_pace);
     }
 
@@ -260,6 +279,7 @@ class RunConverter
     removeDecimalValue(value)
     {
         let index: number = String(value).indexOf(".");
+        console.log("Value with decimal value: " + parseInt(String(value).substring(0, index)));
         return parseInt(String(value).substring(0, index));
     }
 
@@ -316,5 +336,52 @@ class RunConverter
     }
 }
 
+let runconv = new RunConverter();
+
+//Not convert correctly 15, 16, 20 (5 multiples)
+console.log("15 km/h = " + runconv.KilometersPerHourToPaceMinKm(15.0)  + " min/km");
+        /*System.out.println("4:17 min/km = " +converter.PaceMinKmToKilometersPerHour(4, 17) + "km/h");
+
+        System.out.println("18.9 km/h = " + converter.KilometersPerHourToPaceMinKm(18.9)+ " min/km");
+        System.out.println("3:17 min/km = " +  converter.PaceMinKmToKilometersPerHour(3, 17) + " km/h");
+        System.out.println("241.9 m/min = " + converter.MetersMinuteToKilometersPerHour(241.9) + " km/h");
+        System.out.println("14.514 km/h = " + converter.KilometersPerHourToMetersMinute(14.514) + " m/min");
+        System.out.println("4.0316 m/sec = " + converter.MetersSecondToKilometersPerHour(4.0316) + " km/h");
+        System.out.println("14.514 km/h = " +converter.KilometersPerHourToMetersSecond(14.514) + " m/second");
+        System.out.println("01:20:00 in a 4:00min/km pace: " + converter.TimeAndPacePerKmToTotalKilometers("01:20:00", "04:30") + "km.");
+        System.out.println("15km in a 4:00min/km pace: " + converter.TotalKilometersAndPacePerKmToTime(15, "04:00"));
+        System.out.println("10km in a 4:00min/km pace: " + converter.TotalKilometersAndPacePerKmToTime(10, "04:00"));
+        System.out.println("10km in a 3:31min/km pace: " + converter.TotalKilometersAndPacePerKmToTime(10, "03:31"));
+        System.out.println("Run to 382:56:00 time and 6054kms in " + converter.TimeAndKilometersToPacePerKm("382:56:00", 6054) + "min/km.");
+
+        //Steps
+        System.out.println("14500 steps in 20kms: " + converter.StepsPerKmFromTotalStepsAndDistanceKm(20, 14500) + " steps/km");
+        System.out.println("14500 steps in 1h18min00sg: " + converter.StepsPerMinuteFromTotalStepsAndTime("01:18:00", 14500) + " steps/min");
 
 
+        //VO2 max
+        System.out.println("3850 metres in 12 minutes (Test cooper): " + converter.VO2MaxInCooperTest(3850) + " ml/kg/min");
+        System.out.println("With VO2max 74 you must run " + converter.DistanceNeedToObtainSpecificVO2MaxWithCooperTest(74, false) + " meters");
+        System.out.println("With VO2max 74 you must run " + converter.DistanceNeedToObtainSpecificVO2MaxWithCooperTest(74, true) + " kms");
+
+
+        //Karvonen
+        System.out.println("Low 29ppm and max 174ppm in 70%: " + converter.ObtainFCZoneWithPercent(70, 29, 174));
+        ArrayList<String> fc_data = converter.ObtainResumeOfFCZones(29,174);
+        System.out.println("*****************************************");
+        System.out.println("Low 29ppm and max 174ppm in all zones");
+        System.out.println("*****************************************");
+        for (int i = 0; i < fc_data.size(); i++)
+        {
+            System.out.println(fc_data.get(i));
+        }
+
+        //Yards - Metres
+        System.out.println("1 meter = " + converter.ConvertMetersToYards(1)+ " yards.");
+        System.out.println("1 yards = " + converter.ConvertYardsToMeters(1)+ " meters.");
+
+        //Feets - Metres
+        System.out.println("1 meter = " + converter.ConvertMetersToFeets(1)+ " feets.");
+        System.out.println("1 feet = " + converter.ConvertFeetsToMeters(1)+ " meters.");
+
+*/
