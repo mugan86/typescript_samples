@@ -17,16 +17,13 @@ var RunConverter = (function () {
         console.log("INDEX: " + index);
         //Get only pace minutes
         var min_pace = min_sc_km;
-        if (index != -1) {
+        if (index != -1)
             min_pace = this.removeDecimalValue(min_sc_km);
-        }
         console.log(min_pace);
         //Get only pace seconds
         var sec_pace = 0;
-        if (index != -1) {
-            sec_pace = parseFloat("0" + result_str.substring(index));
-            sec_pace = this.removeDecimalValue(sec_pace * 60);
-        }
+        if (index != -1)
+            sec_pace = this.removeDecimalValue((parseFloat("0" + result_str.substring(index))) * 60);
         return this.getPaceMinKMInCorrectFormat(min_pace, sec_pace);
     };
     /**
@@ -278,7 +275,6 @@ var RunConverter = (function () {
     return RunConverter;
 }());
 var runconv = new RunConverter();
-//Not convert correctly 15, 16, 20 (5 multiples)
 console.log("15 km/h = " + runconv.KilometersPerHourToPaceMinKm(15.0) + " min/km");
 /*System.out.println("4:17 min/km = " +converter.PaceMinKmToKilometersPerHour(4, 17) + "km/h");
 
