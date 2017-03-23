@@ -301,6 +301,7 @@ document.write("01:30:00 in a 4:00min/km pace: " + converter.TimeAndPacePerKmToT
 document.write("16.76km in a 4:00min/km pace: " + converter.TotalKilometersAndPacePerKmToTime(16.76, "04:00") + "<br/>"); //Need optimize return result
 document.write("10km in a 4:00min/km pace: " + converter.TotalKilometersAndPacePerKmToTime(10, "04:00") + "<br/>");
 document.write("10km in a 3:31min/km pace: " + converter.TotalKilometersAndPacePerKmToTime(10, "03:31") + "<br/>");
+document.write("Run to 382:56:00 time and 6054kms in " + converter.TimeAndKilometersToPacePerKm("382:56:00", 6054) + "min/km.<br/>");
 /*
 
 
