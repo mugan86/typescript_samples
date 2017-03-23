@@ -18,13 +18,13 @@ var RunConverter = (function () {
         //Get only pace minutes
         var min_pace = min_sc_km;
         if (index != -1)
-            min_pace = this.removeDecimalValue(min_sc_km);
+            min_pace = this.RemoveDecimalValue(min_sc_km);
         console.log(min_pace);
         //Get only pace seconds
         var sec_pace = 0;
         if (index != -1)
-            sec_pace = this.removeDecimalValue((parseFloat("0" + result_str.substring(index))) * 60);
-        return this.getPaceMinKMInCorrectFormat(min_pace, sec_pace);
+            sec_pace = this.RemoveDecimalValue((parseFloat("0" + result_str.substring(index))) * 60);
+        return this.GetPaceMinKMInCorrectFormat(min_pace, sec_pace);
     };
     /**
      *
@@ -49,7 +49,7 @@ var RunConverter = (function () {
             return "Stop situation";
         console.log(speed_m_min);
         console.info("Meters/s en km/h: " + (speed_m_min * 60) / 1000);
-        return this.getDoubleValue(String((speed_m_min * 60) / 1000), 2);
+        return this.GetDoubleValue(String((speed_m_min * 60) / 1000), 2);
     };
     /**
      * @param speed_km_h Add value in kilometers / hour. For Example: 14.5
@@ -58,7 +58,7 @@ var RunConverter = (function () {
     RunConverter.prototype.KilometersPerHourToMetersMinute = function (speed_km_h) {
         if (speed_km_h <= 0)
             return "Stop situation";
-        return this.getDoubleValue(String(((speed_km_h / 60) * 1000)), 2);
+        return this.GetDoubleValue(String(((speed_km_h / 60) * 1000)), 2);
     };
     /**
      * @param speed_m_sec meters for second
@@ -73,7 +73,7 @@ var RunConverter = (function () {
      */
     RunConverter.prototype.KilometersPerHourToMetersSecond = function (speed_km_h) {
         var result_with_m_min = this.KilometersPerHourToMetersMinute(speed_km_h);
-        return this.getDoubleValue(String((parseFloat(result_with_m_min.replace(",", ".").trim())) / 60), 2);
+        return this.GetDoubleValue(String((parseFloat(result_with_m_min.replace(",", ".").trim())) / 60), 2);
     };
     /**
      * @param time HH:MM:SS formatAdd value in kilometers / hour. For Example: 01:00:00
@@ -82,7 +82,7 @@ var RunConverter = (function () {
      */
     RunConverter.prototype.TimeAndKilometersToPacePerKm = function (time, km) {
         //Get total time to complete km in seconds
-        var time_complete_km_in_seconds = this.getTimeInSecondsFromTime(time) / km;
+        var time_complete_km_in_seconds = this.GetTimeInSecondsFromTime(time) / km;
         //Apply rint
         time_complete_km_in_seconds = Math.round(time_complete_km_in_seconds);
         //Get min
@@ -90,7 +90,7 @@ var RunConverter = (function () {
         //Get seconds to pace per km
         var sec_pace = time_complete_km_in_seconds % 60;
         //Return with pretty format
-        return this.getPaceMinKMInCorrectFormat(min_pace, sec_pace);
+        return this.GetPaceMinKMInCorrectFormat(min_pace, sec_pace);
     };
     /**
      * @param time        HH:MM:SS formatAdd value in kilometers / hour. For Example: 01:00:00
@@ -99,12 +99,12 @@ var RunConverter = (function () {
      */
     RunConverter.prototype.TimeAndPacePerKmToTotalKilometers = function (time, pace_min_km) {
         //Denbora totala segundutan lortzeko
-        var sgTotalak = this.getTimeInSecondsFromTime(time);
+        var sgTotalak = this.GetTimeInSecondsFromTime(time);
         //Get one km complete in seconds
-        var sgKm = this.getTimeInSecondsFromPacePerKm(pace_min_km);
+        var sgKm = this.GetTimeInSecondsFromPacePerKm(pace_min_km);
         //Denbora zehatz batean egin ditugun km kopurua emango da
         var kilometers = sgTotalak / sgKm;
-        return this.getDoubleValue(String(Math.round(kilometers * 1000) / 1000), 2);
+        return this.GetDoubleValue(String(Math.round(kilometers * 1000) / 1000), 2);
     };
     /**
      * @param km          double value to asign total kms to convert. For Example: 14.0
@@ -113,7 +113,7 @@ var RunConverter = (function () {
      */
     RunConverter.prototype.TotalKilometersAndPacePerKmToTime = function (km, pace_min_km) {
         //total seconds to complete one kilometer (from pace per km)
-        var sgKm = this.getTimeInSecondsFromPacePerKm(pace_min_km);
+        var sgKm = this.GetTimeInSecondsFromPacePerKm(pace_min_km);
         //Total time to complete x km in x min per km
         var total_time_in_seconds = sgKm * km;
         //Convert total seconds in time format
@@ -136,7 +136,7 @@ var RunConverter = (function () {
          *
          * x = (14500 * 60) / 4680 = 185,89 step / min
          */
-        return String(14500 * 60 / this.getTimeInSecondsFromTime(time));
+        return String(14500 * 60 / this.GetTimeInSecondsFromTime(time));
     };
     /**
      * @param km          double value to asign total kms to convert. For Example: 14.0
@@ -152,8 +152,8 @@ var RunConverter = (function () {
      */
     RunConverter.prototype.VO2MaxInCooperTest = function (distance) {
         if (distance < 1000)
-            distance = this.getDistanceinMeters(distance);
-        return this.getDoubleValue(String((distance - 504) / 45), 3);
+            distance = this.GetDistanceinMeters(distance);
+        return this.GetDoubleValue(String((distance - 504) / 45), 3);
     };
     /**
      * @param v02   double value to asign vO2max that use to calculate distance to complete to obtain this vO2 max.
@@ -164,7 +164,7 @@ var RunConverter = (function () {
     RunConverter.prototype.DistanceNeedToObtainSpecificVO2MaxWithCooperTest = function (v02, in_km) {
         if (!in_km)
             return String((v02 * 45) + 504);
-        return String(this.getDoubleValue((this.getDistanceInKms((v02 * 45) + 504)), 3));
+        return String(this.GetDoubleValue((this.GetDistanceInKms((v02 * 45) + 504)), 3));
     };
     /**
      * @param percent : Percent to calculate FC range min value to FC zone (for example 50 = Z1)
@@ -227,12 +227,14 @@ var RunConverter = (function () {
     RunConverter.prototype.ConvertMetersToYards = function (meters) {
         return String(meters * 1.0936133333333);
     };
-    RunConverter.prototype.removeDecimalValue = function (value) {
+    RunConverter.prototype.RemoveDecimalValue = function (value) {
         var index = String(value).indexOf(".");
+        if (index == -1)
+            return parseInt(value);
         console.log("Value with decimal value: " + parseInt(String(value).substring(0, index)));
         return parseInt(String(value).substring(0, index));
     };
-    RunConverter.prototype.getPaceMinKMInCorrectFormat = function (min_pace, sec_pace) {
+    RunConverter.prototype.GetPaceMinKMInCorrectFormat = function (min_pace, sec_pace) {
         sec_pace = parseInt(sec_pace);
         min_pace = parseInt(min_pace);
         //Add format to result depending minutes and seconds pace
@@ -245,7 +247,7 @@ var RunConverter = (function () {
         else
             return min_pace + ":" + sec_pace;
     };
-    RunConverter.prototype.getTimeInSecondsFromTime = function (time) {
+    RunConverter.prototype.GetTimeInSecondsFromTime = function (time) {
         var parts = time.split(":");
         var hour = parts[0]; // 004
         var min = parts[1]; // 034556
@@ -253,7 +255,7 @@ var RunConverter = (function () {
         //Total time (in seconds) = (3600*hour) + (60*min) + sec
         return (3600 * parseInt(hour)) + (60 * parseInt(min)) + parseInt(sec);
     };
-    RunConverter.prototype.getTimeInSecondsFromPacePerKm = function (pace_per_km) {
+    RunConverter.prototype.GetTimeInSecondsFromPacePerKm = function (pace_per_km) {
         console.log(pace_per_km);
         var parts = pace_per_km.split(":");
         var min = parts[0]; // 034556
@@ -263,7 +265,7 @@ var RunConverter = (function () {
         return (60 * parseInt(min)) + parseInt(sec);
     };
     //Round value with specific decimals
-    RunConverter.prototype.getDoubleValue = function (value, digit) {
+    RunConverter.prototype.GetDoubleValue = function (value, digit) {
         var number;
         if (value == null)
             number = 0;
@@ -271,16 +273,18 @@ var RunConverter = (function () {
             number = value;
         return (Math.round(number * 100) / 100).toFixed(digit);
     };
-    RunConverter.prototype.getDistanceinMeters = function (distance) {
+    RunConverter.prototype.GetDistanceinMeters = function (distance) {
         return +distance * 1000;
     };
-    RunConverter.prototype.getDistanceInKms = function (meters) {
+    RunConverter.prototype.GetDistanceInKms = function (meters) {
         return +meters / 1000;
     };
     RunConverter.prototype.GetWithTwoDigits = function (value) {
+        console.log("Value to test: " + value);
+        value = this.RemoveDecimalValue(value);
         if (value < 10)
             return "0" + value;
-        return value;
+        return String(value);
     };
     return RunConverter;
 }());
@@ -294,7 +298,7 @@ document.write("241.9 m/min = " + converter.MetersMinuteToKilometersPerHour(241.
 document.write("14.514 km/h = " + converter.KilometersPerHourToMetersSecond(14.514) + " m/second<br/>");
 document.write("01:30:00 in a 4:00min/km pace: " + converter.TimeAndPacePerKmToTotalKilometers("01:30:00", "04:00") + "km.<br/>");
 document.write("01:30:00 in a 4:00min/km pace: " + converter.TimeAndPacePerKmToTotalKilometers("01:30:00", "03:00") + "km.<br/>");
-document.write("16.5km in a 4:00min/km pace: " + converter.TotalKilometersAndPacePerKmToTime(16.5, "04:00") + "<br/>"); //Need optimize return result
+document.write("16.76km in a 4:00min/km pace: " + converter.TotalKilometersAndPacePerKmToTime(16.76, "04:00") + "<br/>"); //Need optimize return result
 /*
 
 
