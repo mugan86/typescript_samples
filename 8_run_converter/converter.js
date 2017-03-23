@@ -299,6 +299,8 @@ document.write("14.514 km/h = " + converter.KilometersPerHourToMetersSecond(14.5
 document.write("01:30:00 in a 4:00min/km pace: " + converter.TimeAndPacePerKmToTotalKilometers("01:30:00", "04:00") + "km.<br/>");
 document.write("01:30:00 in a 4:00min/km pace: " + converter.TimeAndPacePerKmToTotalKilometers("01:30:00", "03:00") + "km.<br/>");
 document.write("16.76km in a 4:00min/km pace: " + converter.TotalKilometersAndPacePerKmToTime(16.76, "04:00") + "<br/>"); //Need optimize return result
+document.write("10km in a 4:00min/km pace: " + converter.TotalKilometersAndPacePerKmToTime(10, "04:00") + "<br/>");
+document.write("10km in a 3:31min/km pace: " + converter.TotalKilometersAndPacePerKmToTime(10, "03:31") + "<br/>");
 /*
 
 
