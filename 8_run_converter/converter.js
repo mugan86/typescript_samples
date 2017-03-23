@@ -288,7 +288,7 @@ var RunConverter = (function () {
         return +meters / 1000;
     };
     RunConverter.prototype.GetWithTwoDigits = function (value) {
-        console.log("Value to test: " + value);
+        //Remove all decimals before than asign correct format
         value = this.RemoveDecimalValue(value);
         if (value < 10)
             return "0" + value;
