@@ -120,8 +120,9 @@ var RunConverter = (function () {
         var hours = total_time_in_seconds / 3600;
         var minutes = (total_time_in_seconds % 3600) / 60;
         var seconds = total_time_in_seconds % 60;
-        return hours + ":" + minutes + ":" + seconds;
-        //return String.format("%02d:%02d:%02d", hours, minutes, seconds);
+        return this.GetWithTwoDigits(hours) + ":" +
+            this.GetWithTwoDigits(minutes) + ":" +
+            this.GetWithTwoDigits(seconds);
     };
     /**
      * @param time        HH:MM:SS formatAdd value in kilometers / hour. For Example: 01:00:00
@@ -276,6 +277,11 @@ var RunConverter = (function () {
     RunConverter.prototype.getDistanceInKms = function (meters) {
         return +meters / 1000;
     };
+    RunConverter.prototype.GetWithTwoDigits = function (value) {
+        if (value < 10)
+            return "0" + value;
+        return value;
+    };
     return RunConverter;
 }());
 var converter = new RunConverter();
@@ -288,7 +294,7 @@ document.write("241.9 m/min = " + converter.MetersMinuteToKilometersPerHour(241.
 document.write("14.514 km/h = " + converter.KilometersPerHourToMetersSecond(14.514) + " m/second<br/>");
 document.write("01:30:00 in a 4:00min/km pace: " + converter.TimeAndPacePerKmToTotalKilometers("01:30:00", "04:00") + "km.<br/>");
 document.write("01:30:00 in a 4:00min/km pace: " + converter.TimeAndPacePerKmToTotalKilometers("01:30:00", "03:00") + "km.<br/>");
-document.write("15km in a 4:00min/km pace: " + converter.TotalKilometersAndPacePerKmToTime(15, "04:00") + "<br/>"); //Need optimize return result
+document.write("16.5km in a 4:00min/km pace: " + converter.TotalKilometersAndPacePerKmToTime(16.5, "04:00") + "<br/>"); //Need optimize return result
 /*
 
 
