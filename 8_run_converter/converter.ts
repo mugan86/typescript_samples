@@ -276,13 +276,15 @@ class RunConverter
         return String(meters*1.0936133333333);
     }
 
-
+    /**
+     * @param value to remove decimals (if exist)
+     * @return Int value
+     */
     RemoveDecimalValue(value)
     {
         let index: number = String(value).indexOf(".");
 
         if (index == -1) return parseInt(value);
-        console.log("Value with decimal value: " + parseInt(String(value).substring(0, index)));
         return parseInt(String(value).substring(0, index));
     }
 
@@ -364,17 +366,11 @@ document.write("16.76km in a 4:00min/km pace: " + converter.TotalKilometersAndPa
 document.write("10km in a 4:00min/km pace: " + converter.TotalKilometersAndPacePerKmToTime(10, "04:00")+"<br/>");
 document.write("10km in a 3:31min/km pace: " + converter.TotalKilometersAndPacePerKmToTime(10, "03:31")+"<br/>");
 document.write("Run to 382:56:00 time and 6054kms in " + converter.TimeAndKilometersToPacePerKm("382:56:00", 6054) + "min/km.<br/>");       
+ //Steps
+ document.write("14500 steps in 20kms: " + converter.StepsPerKmFromTotalStepsAndDistanceKm(20, 14500) + " steps/km<br/>");
         /*
 
-
-
-
-        System.out.println("15km in a 4:00min/km pace: " + converter.TotalKilometersAndPacePerKmToTime(15, "04:00"));
-        System.out.println("10km in a 4:00min/km pace: " + converter.TotalKilometersAndPacePerKmToTime(10, "04:00"));
-        System.out.println("10km in a 3:31min/km pace: " + converter.TotalKilometersAndPacePerKmToTime(10, "03:31"));
-        System.out.println("Run to 382:56:00 time and 6054kms in " + converter.TimeAndKilometersToPacePerKm("382:56:00", 6054) + "min/km.");
-
-        //Steps
+       
         System.out.println("14500 steps in 20kms: " + converter.StepsPerKmFromTotalStepsAndDistanceKm(20, 14500) + " steps/km");
         System.out.println("14500 steps in 1h18min00sg: " + converter.StepsPerMinuteFromTotalStepsAndTime("01:18:00", 14500) + " steps/min");
 
