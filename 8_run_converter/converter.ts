@@ -287,6 +287,7 @@ class RunConverter
         if (index == -1) return parseInt(value);
         return parseInt(String(value).substring(0, index));
     }
+
      /**
      * @param sec_pace Pace per km seconds value
      * @param min_pace Pace per km minutes value
@@ -303,6 +304,10 @@ class RunConverter
         else return min_pace + ":" +sec_pace;
     }
 
+    /**
+    * @param time: Time total in seconds, use to convert to time HH:MM:SS format
+    * @return Return total seconds in time format. 3600seconds = 01:00:00
+    */
     GetTimeInSecondsFromTime(time:string)
     {
 
@@ -315,6 +320,10 @@ class RunConverter
         return (3600 * parseInt(hour)) + (60 * parseInt(min)) + parseInt(sec);
     }
 
+    /**
+    * @param pace_per_km: Time total in seconds to complete one kilometer
+    * @return Return total seconds to use in one km in min/km format. 240 seconds = 04:00
+    */
     GetTimeInSecondsFromPacePerKm(pace_per_km:string)
     {
         console.log(pace_per_km);
@@ -327,7 +336,13 @@ class RunConverter
         //Total time (in seconds) = (3600*hour) + (60*min) + sec
         return (60 * parseInt(min)) + parseInt(sec);
     }
-    //Round value with specific decimals
+
+    /**
+    * Round value with specific decimals
+    * @param pace_per_km: Time total in seconds to complete one kilometer
+    * @param pace_per_km: Time total in seconds to complete one kilometer
+    * @return Return result with select digit total. For example result 182.3453 with digit = 2 => 182.34
+    */
     private GetDoubleValue(value,digit){
         let number:number;
         if(value==null) number=0;
@@ -335,16 +350,31 @@ class RunConverter
         return (Math.round(number * 100) / 100).toFixed(digit);
     }
 
+    /**
+    * Convert distance in kms to meters
+    * @param distance: Distance in kilometers
+    * @return Distance in meters. 1km = 1000m
+    */
     private GetDistanceinMeters(distance)
     {
         return +distance * 1000;
     }
 
+    /**
+    * Convert distance in meters from kms
+    * @param distance: Distance in metres
+    * @return Distance in kms. 1000m = 1km
+    */
     private GetDistanceInKms(meters)
     {
         return +meters / 1000;
     }
 
+    /**
+    * 
+    * @param number: Number to use to return with two digits
+    * @return Value in string format with 2 chars length. 9 = "09"
+    */
     private GetWithTwoDigits(value: number)
     {
         //Remove all decimals before than asign correct format
