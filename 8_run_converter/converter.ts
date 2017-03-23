@@ -280,6 +280,8 @@ class RunConverter
     RemoveDecimalValue(value)
     {
         let index: number = String(value).indexOf(".");
+
+        if (index == -1) return parseInt(value);
         console.log("Value with decimal value: " + parseInt(String(value).substring(0, index)));
         return parseInt(String(value).substring(0, index));
     }
@@ -339,8 +341,11 @@ class RunConverter
 
     private GetWithTwoDigits(value: number)
     {
-        if (value < 10) return this.RemoveDecimalValue("0"+value);
-        return this.RemoveDecimalValue(String(value));
+        console.log("Value to test: " + value);
+
+        value = this.RemoveDecimalValue(value);
+        if (value < 10) return "0"+value;
+        return String(value);
     }
 }
 
@@ -355,7 +360,7 @@ document.write("241.9 m/min = " + converter.MetersMinuteToKilometersPerHour(241.
 document.write("14.514 km/h = " +converter.KilometersPerHourToMetersSecond(14.514) + " m/second<br/>");
 document.write("01:30:00 in a 4:00min/km pace: " + converter.TimeAndPacePerKmToTotalKilometers("01:30:00", "04:00") + "km.<br/>");
 document.write("01:30:00 in a 4:00min/km pace: " + converter.TimeAndPacePerKmToTotalKilometers("01:30:00", "03:00") + "km.<br/>");
-document.write("16.5km in a 4:00min/km pace: " + converter.TotalKilometersAndPacePerKmToTime(16.5, "04:00")+"<br/>"); //Need optimize return result
+document.write("16.76km in a 4:00min/km pace: " + converter.TotalKilometersAndPacePerKmToTime(16.76, "04:00")+"<br/>"); //Need optimize return result
         /*
 
 
