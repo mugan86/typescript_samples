@@ -156,8 +156,9 @@ class RunConverter
         let hours = total_time_in_seconds / 3600;
         let minutes = (total_time_in_seconds % 3600) / 60;
         let seconds = total_time_in_seconds % 60;
-        return hours + ":" + minutes + ":"+ seconds;
-        //return String.format("%02d:%02d:%02d", hours, minutes, seconds);
+        return this.GetWithTwoDigits(hours) + ":" + 
+                this.GetWithTwoDigits(minutes) + ":"+ 
+                this.GetWithTwoDigits(seconds);
     }
 
     /**
@@ -319,21 +320,27 @@ class RunConverter
         return (60 * parseInt(min)) + parseInt(sec);
     }
     //Round value with specific decimals
-    getDoubleValue(value,digit){
+    private getDoubleValue(value,digit){
         let number:number;
         if(value==null) number=0;
         else number = value;
         return (Math.round(number * 100) / 100).toFixed(digit);
     }
 
-    getDistanceinMeters(distance)
+    private getDistanceinMeters(distance)
     {
         return +distance * 1000;
     }
 
-    getDistanceInKms(meters)
+    private getDistanceInKms(meters)
     {
         return +meters / 1000;
+    }
+
+    private GetWithTwoDigits(value: number)
+    {
+        if (value < 10) return "0"+value;
+        return value;
     }
 }
 
@@ -348,7 +355,7 @@ document.write("241.9 m/min = " + converter.MetersMinuteToKilometersPerHour(241.
 document.write("14.514 km/h = " +converter.KilometersPerHourToMetersSecond(14.514) + " m/second<br/>");
 document.write("01:30:00 in a 4:00min/km pace: " + converter.TimeAndPacePerKmToTotalKilometers("01:30:00", "04:00") + "km.<br/>");
 document.write("01:30:00 in a 4:00min/km pace: " + converter.TimeAndPacePerKmToTotalKilometers("01:30:00", "03:00") + "km.<br/>");
-document.write("15km in a 4:00min/km pace: " + converter.TotalKilometersAndPacePerKmToTime(15, "04:00")+"<br/>"); //Need optimize return result
+document.write("16.5km in a 4:00min/km pace: " + converter.TotalKilometersAndPacePerKmToTime(16.5, "04:00")+"<br/>"); //Need optimize return result
         /*
 
 
