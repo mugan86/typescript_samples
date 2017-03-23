@@ -136,7 +136,7 @@ var RunConverter = (function () {
          *
          * x = (14500 * 60) / 4680 = 185,89 step / min
          */
-        return String(14500 * 60 / this.GetTimeInSecondsFromTime(time));
+        return this.GetDoubleValue(14500 * 60 / this.GetTimeInSecondsFromTime(time), 2);
     };
     /**
      * @param km          double value to asign total kms to convert. For Example: 14.0
@@ -313,6 +313,7 @@ var conversions = [
     "Run to 382:56:00 time and 6054kms in " + converter.TimeAndKilometersToPacePerKm("382:56:00", 6054) + "min/km",
     //Steps
     "14500 steps in 20kms: " + converter.StepsPerKmFromTotalStepsAndDistanceKm(20, 14500) + " steps/km",
+    "14500 steps in 1h18min00sg: " + converter.StepsPerMinuteFromTotalStepsAndTime("01:18:00", 14500) + " steps/min"
 ];
 for (var i = 0; i < conversions.length; i++) {
     document.write(conversions[i] + "<br/>");
