@@ -339,17 +339,16 @@ class RunConverter
 
 let converter = new RunConverter();
 
-
-console.log("15 km/h = " + converter.KilometersPerHourToPaceMinKm(15.0)  + " min/km");
-console.log("4:17 min/km = " +converter.PaceMinKmToKilometersPerHour(4, 17) + "km/h");
-console.log("4:00 min/km = " +converter.PaceMinKmToKilometersPerHour(4, 0) + "km/h");
-console.log("18.9 km/h = " + converter.KilometersPerHourToPaceMinKm(18.9)+ " min/km");
-console.log("4.0316 m/sec = " + converter.MetersSecondToKilometersPerHour(4.0316) + " km/h");
-console.log("241.9 m/min = " + converter.MetersMinuteToKilometersPerHour(241.9) + " km/h");
-console.log("14.514 km/h = " +converter.KilometersPerHourToMetersSecond(14.514) + " m/second");
-console.log("01:30:00 in a 4:00min/km pace: " + converter.TimeAndPacePerKmToTotalKilometers("01:30:00", "04:00") + "km.");
-console.log("01:30:00 in a 4:00min/km pace: " + converter.TimeAndPacePerKmToTotalKilometers("01:30:00", "03:00") + "km.");
-console.info("15km in a 4:00min/km pace: " + converter.TotalKilometersAndPacePerKmToTime(15, "04:00")); //Need optimize return result
+document.write("15 km/h = " + converter.KilometersPerHourToPaceMinKm(15.0)  + " min/km<br/>");
+document.write("4:17 min/km = " +converter.PaceMinKmToKilometersPerHour(4, 17) + "km/h<br/>");
+document.write("4:00 min/km = " +converter.PaceMinKmToKilometersPerHour(4, 0) + "km/h<br/>");
+document.write("18.9 km/h = " + converter.KilometersPerHourToPaceMinKm(18.9)+ " min/km<br/>");
+document.write("4.0316 m/sec = " + converter.MetersSecondToKilometersPerHour(4.0316) + " km/h<br/>");
+document.write("241.9 m/min = " + converter.MetersMinuteToKilometersPerHour(241.9) + " km/h<br/>");
+document.write("14.514 km/h = " +converter.KilometersPerHourToMetersSecond(14.514) + " m/second<br/>");
+document.write("01:30:00 in a 4:00min/km pace: " + converter.TimeAndPacePerKmToTotalKilometers("01:30:00", "04:00") + "km.<br/>");
+document.write("01:30:00 in a 4:00min/km pace: " + converter.TimeAndPacePerKmToTotalKilometers("01:30:00", "03:00") + "km.<br/>");
+document.write("15km in a 4:00min/km pace: " + converter.TotalKilometersAndPacePerKmToTime(15, "04:00")+"<br/>"); //Need optimize return result
         /*
 
 
