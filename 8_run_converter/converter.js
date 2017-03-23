@@ -237,6 +237,11 @@ var RunConverter = (function () {
             return parseInt(value);
         return parseInt(String(value).substring(0, index));
     };
+    /**
+    * @param sec_pace Pace per km seconds value
+    * @param min_pace Pace per km minutes value
+    * @return Correct format to show pace per km, f.e: 04:07
+    */
     RunConverter.prototype.GetPaceMinKMInCorrectFormat = function (min_pace, sec_pace) {
         sec_pace = parseInt(sec_pace);
         min_pace = parseInt(min_pace);
