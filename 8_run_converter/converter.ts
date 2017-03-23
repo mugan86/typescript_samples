@@ -24,15 +24,15 @@ class RunConverter
         //Get only pace minutes
 
         let min_pace: number = min_sc_km;
-        if (index != -1)  min_pace = this.removeDecimalValue(min_sc_km);
+        if (index != -1)  min_pace = this.RemoveDecimalValue(min_sc_km);
 
         console.log(min_pace);
 
         //Get only pace seconds
         let sec_pace: number = 0;
-        if (index != -1) sec_pace = this.removeDecimalValue((parseFloat("0" + result_str.substring(index)))*60);
+        if (index != -1) sec_pace = this.RemoveDecimalValue((parseFloat("0" + result_str.substring(index)))*60);
 
-        return this.getPaceMinKMInCorrectFormat(min_pace, sec_pace);
+        return this.GetPaceMinKMInCorrectFormat(min_pace, sec_pace);
     }
 
     /**
@@ -66,7 +66,7 @@ class RunConverter
 
 
 
-        return this.getDoubleValue(String((speed_m_min*60) / 1000), 2);
+        return this.GetDoubleValue(String((speed_m_min*60) / 1000), 2);
     }
 
     /**
@@ -75,7 +75,7 @@ class RunConverter
      */
     KilometersPerHourToMetersMinute(speed_km_h: number) {
         if (speed_km_h <= 0) return "Stop situation";
-        return this.getDoubleValue(String(((speed_km_h/60)*1000)), 2);
+        return this.GetDoubleValue(String(((speed_km_h/60)*1000)), 2);
     }
 
     /**
@@ -94,7 +94,7 @@ class RunConverter
     KilometersPerHourToMetersSecond(speed_km_h: number) {
         let result_with_m_min = this.KilometersPerHourToMetersMinute(speed_km_h);
 
-        return this.getDoubleValue(String((parseFloat(result_with_m_min.replace(",", ".").trim())) / 60), 2);
+        return this.GetDoubleValue(String((parseFloat(result_with_m_min.replace(",", ".").trim())) / 60), 2);
     }
 
     /**
@@ -105,7 +105,7 @@ class RunConverter
     TimeAndKilometersToPacePerKm(time: string, km: number) {
 
         //Get total time to complete km in seconds
-        let time_complete_km_in_seconds: number = this.getTimeInSecondsFromTime(time)/km;
+        let time_complete_km_in_seconds: number = this.GetTimeInSecondsFromTime(time)/km;
 
         //Apply rint
         time_complete_km_in_seconds=Math.round(time_complete_km_in_seconds);
@@ -117,7 +117,7 @@ class RunConverter
         let sec_pace = time_complete_km_in_seconds % 60;
 
         //Return with pretty format
-        return this.getPaceMinKMInCorrectFormat(min_pace, sec_pace);
+        return this.GetPaceMinKMInCorrectFormat(min_pace, sec_pace);
     }
 
     /**
@@ -128,15 +128,15 @@ class RunConverter
     TimeAndPacePerKmToTotalKilometers(time: string, pace_min_km:string) {
 
         //Denbora totala segundutan lortzeko
-        let sgTotalak=this.getTimeInSecondsFromTime(time);
+        let sgTotalak=this.GetTimeInSecondsFromTime(time);
 
         //Get one km complete in seconds
-        let sgKm:number=this. getTimeInSecondsFromPacePerKm(pace_min_km);
+        let sgKm:number=this. GetTimeInSecondsFromPacePerKm(pace_min_km);
 
         //Denbora zehatz batean egin ditugun km kopurua emango da
         let kilometers: number= sgTotalak/sgKm;
 
-        return this.getDoubleValue(String(Math.round(kilometers*1000)/1000), 2);
+        return this.GetDoubleValue(String(Math.round(kilometers*1000)/1000), 2);
     }
 
     /**
@@ -147,7 +147,7 @@ class RunConverter
     TotalKilometersAndPacePerKmToTime(km: number, pace_min_km: string) {
 
         //total seconds to complete one kilometer (from pace per km)
-        let sgKm = this.getTimeInSecondsFromPacePerKm(pace_min_km);
+        let sgKm = this.GetTimeInSecondsFromPacePerKm(pace_min_km);
 
         //Total time to complete x km in x min per km
         let total_time_in_seconds = sgKm * km;
@@ -173,7 +173,7 @@ class RunConverter
          *
          * x = (14500 * 60) / 4680 = 185,89 step / min
          */
-        return String(14500 * 60 /this.getTimeInSecondsFromTime(time));
+        return String(14500 * 60 /this.GetTimeInSecondsFromTime(time));
     }
 
     /**
@@ -191,9 +191,9 @@ class RunConverter
      */
     VO2MaxInCooperTest(distance) {
 
-        if (distance < 1000) /*Distance in kmeters*/ distance = this.getDistanceinMeters(distance);
+        if (distance < 1000) /*Distance in kmeters*/ distance = this.GetDistanceinMeters(distance);
 
-        return this.getDoubleValue(String((distance - 504) / 45), 3);
+        return this.GetDoubleValue(String((distance - 504) / 45), 3);
     }
 
     /**
@@ -204,7 +204,7 @@ class RunConverter
      */
     DistanceNeedToObtainSpecificVO2MaxWithCooperTest(v02:number, in_km: boolean) {
         if (!in_km) return String((v02*45) + 504);
-        return String(this.getDoubleValue((this.getDistanceInKms((v02*45) + 504)), 3));
+        return String(this.GetDoubleValue((this.GetDistanceInKms((v02*45) + 504)), 3));
     }
 
     /**
@@ -277,14 +277,14 @@ class RunConverter
     }
 
 
-    removeDecimalValue(value)
+    RemoveDecimalValue(value)
     {
         let index: number = String(value).indexOf(".");
         console.log("Value with decimal value: " + parseInt(String(value).substring(0, index)));
         return parseInt(String(value).substring(0, index));
     }
 
-    getPaceMinKMInCorrectFormat(min_pace, sec_pace)
+    GetPaceMinKMInCorrectFormat(min_pace, sec_pace)
     {
         sec_pace = parseInt(sec_pace);
         min_pace = parseInt(min_pace);
@@ -295,7 +295,7 @@ class RunConverter
         else return min_pace + ":" +sec_pace;
     }
 
-    getTimeInSecondsFromTime(time:string)
+    GetTimeInSecondsFromTime(time:string)
     {
 
         let parts = time.split(":");
@@ -307,7 +307,7 @@ class RunConverter
         return (3600 * parseInt(hour)) + (60 * parseInt(min)) + parseInt(sec);
     }
 
-    getTimeInSecondsFromPacePerKm(pace_per_km:string)
+    GetTimeInSecondsFromPacePerKm(pace_per_km:string)
     {
         console.log(pace_per_km);
         let parts = pace_per_km.split(":");
@@ -320,27 +320,27 @@ class RunConverter
         return (60 * parseInt(min)) + parseInt(sec);
     }
     //Round value with specific decimals
-    private getDoubleValue(value,digit){
+    private GetDoubleValue(value,digit){
         let number:number;
         if(value==null) number=0;
         else number = value;
         return (Math.round(number * 100) / 100).toFixed(digit);
     }
 
-    private getDistanceinMeters(distance)
+    private GetDistanceinMeters(distance)
     {
         return +distance * 1000;
     }
 
-    private getDistanceInKms(meters)
+    private GetDistanceInKms(meters)
     {
         return +meters / 1000;
     }
 
     private GetWithTwoDigits(value: number)
     {
-        if (value < 10) return "0"+value;
-        return value;
+        if (value < 10) return this.RemoveDecimalValue("0"+value);
+        return this.RemoveDecimalValue(String(value));
     }
 }
 
