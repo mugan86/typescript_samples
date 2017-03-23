@@ -347,8 +347,7 @@ class RunConverter
 
     private GetWithTwoDigits(value: number)
     {
-        console.log("Value to test: " + value);
-
+        //Remove all decimals before than asign correct format
         value = this.RemoveDecimalValue(value);
         if (value < 10) return "0"+value;
         return String(value);
