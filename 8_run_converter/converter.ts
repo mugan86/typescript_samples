@@ -386,23 +386,24 @@ class RunConverter
 
 let converter = new RunConverter();
 
-let conversions = [
-                    "15 km/h = " + converter.KilometersPerHourToPaceMinKm(15.0)  + " min/km",
-                    "4:17 min/km = " +converter.PaceMinKmToKilometersPerHour(4, 17) + "km/h",
-                    "4:00 min/km = " +converter.PaceMinKmToKilometersPerHour(4, 0) + "km/h",
-                    "18.9 km/h = " + converter.KilometersPerHourToPaceMinKm(18.9)+ " min/km",
-                    "4.0316 m/sec = " + converter.MetersSecondToKilometersPerHour(4.0316) + " km/h",
-                    "241.9 m/min = " + converter.MetersMinuteToKilometersPerHour(241.9) + " km/h",
-                    "14.514 km/h = " +converter.KilometersPerHourToMetersSecond(14.514) + " m/second",
-                    "01:30:00 in a 4:00min/km pace: " + converter.TimeAndPacePerKmToTotalKilometers("01:30:00", "04:00") + "km.",
-                    "01:30:00 in a 4:00min/km pace: " + converter.TimeAndPacePerKmToTotalKilometers("01:30:00", "03:00") + "km.",
-                    "16.76km in a 4:00min/km pace: " + converter.TotalKilometersAndPacePerKmToTime(16.76, "04:00"),
-                    "10km in a 4:00min/km pace: " + converter.TotalKilometersAndPacePerKmToTime(10, "04:00"),
-                    "10km in a 3:31min/km pace: " + converter.TotalKilometersAndPacePerKmToTime(10, "03:31"),
-                    "Run to 382:56:00 time and 6054kms in " + converter.TimeAndKilometersToPacePerKm("382:56:00", 6054) + "min/km",
-                     //Steps
-                     "14500 steps in 20kms: " + converter.StepsPerKmFromTotalStepsAndDistanceKm(20, 14500) + " steps/km",
-                     "14500 steps in 1h18min00sg: " + converter.StepsPerMinuteFromTotalStepsAndTime("01:18:00", 14500)+ " steps/min"
+let conversions = 
+[
+    "15 km/h = " + converter.KilometersPerHourToPaceMinKm(15.0)  + " min/km",
+    "4:17 min/km = " +converter.PaceMinKmToKilometersPerHour(4, 17) + "km/h",
+    "4:00 min/km = " +converter.PaceMinKmToKilometersPerHour(4, 0) + "km/h",
+    "18.9 km/h = " + converter.KilometersPerHourToPaceMinKm(18.9)+ " min/km",
+    "4.0316 m/sec = " + converter.MetersSecondToKilometersPerHour(4.0316) + " km/h",
+    "241.9 m/min = " + converter.MetersMinuteToKilometersPerHour(241.9) + " km/h",
+    "14.514 km/h = " +converter.KilometersPerHourToMetersSecond(14.514) + " m/second",
+    "01:30:00 in a 4:00min/km pace: " + converter.TimeAndPacePerKmToTotalKilometers("01:30:00", "04:00") + "km.",
+    "01:30:00 in a 4:00min/km pace: " + converter.TimeAndPacePerKmToTotalKilometers("01:30:00", "03:00") + "km.",
+    "16.76km in a 4:00min/km pace: " + converter.TotalKilometersAndPacePerKmToTime(16.76, "04:00"),
+    "10km in a 4:00min/km pace: " + converter.TotalKilometersAndPacePerKmToTime(10, "04:00"),
+    "10km in a 3:31min/km pace: " + converter.TotalKilometersAndPacePerKmToTime(10, "03:31"),
+    "Run to 382:56:00 time and 6054kms in " + converter.TimeAndKilometersToPacePerKm("382:56:00", 6054) + "min/km",
+    //Steps
+    "14500 steps in 20kms: " + converter.StepsPerKmFromTotalStepsAndDistanceKm(20, 14500) + " steps/km",
+    "14500 steps in 1h18min00sg: " + converter.StepsPerMinuteFromTotalStepsAndTime("01:18:00", 14500)+ " steps/min"
 ];
 for (let i = 0; i < conversions.length; i++)
 {
