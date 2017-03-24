@@ -218,16 +218,16 @@ var RunConverter = (function () {
     * @return Meters
     */
     RunConverter.prototype.ConvertMilesToMeters = function (miles) {
-        miles = parseInt(miles);
-        return String(miles / 1609.34);
+        miles = parseFloat(miles);
+        return String(miles / 0.000621371);
     };
     /**
      * @param meters meters to convert to miles
      * @return Miles
      */
     RunConverter.prototype.ConvertMetersToMiles = function (meters) {
-        meters = parseInt(meters);
-        return String(meters * 1609.34);
+        meters = parseFloat(meters);
+        return String(meters * 0.000621371);
     };
     /**
      * @param yards Yards to convert to metres
@@ -369,6 +369,9 @@ var conversions = [
     //Feets - Metres
     "1 meter = " + converter.ConvertMetersToFeets(1) + " feets.",
     "1 feet = " + converter.ConvertFeetsToMeters(1) + " meters.",
+    //Feets - Metres
+    "3400 meters = " + converter.ConvertMetersToMiles(3400) + " miles.",
+    "8 miles = " + converter.ConvertMilesToMeters(8) + " meters.",
 ];
 for (var i = 0; i < conversions.length; i++) {
     document.write(conversions[i] + "<br/>");
