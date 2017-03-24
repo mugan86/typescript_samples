@@ -403,7 +403,12 @@ let conversions =
     "Run to 382:56:00 time and 6054kms in " + converter.TimeAndKilometersToPacePerKm("382:56:00", 6054) + "min/km",
     //Steps
     "14500 steps in 20kms: " + converter.StepsPerKmFromTotalStepsAndDistanceKm(20, 14500) + " steps/km",
-    "14500 steps in 1h18min00sg: " + converter.StepsPerMinuteFromTotalStepsAndTime("01:18:00", 14500)+ " steps/min"
+    "14500 steps in 1h18min00sg: " + converter.StepsPerMinuteFromTotalStepsAndTime("01:18:00", 14500)+ " steps/min",
+    //VO2 max
+    "3850 metres in 12 minutes (Test cooper): " + converter.VO2MaxInCooperTest(3850) + " ml/kg/min",
+    "2000 metres in 12 minutes (Test cooper): " + converter.VO2MaxInCooperTest(2000) + " ml/kg/min",
+    "With VO2max 74 you must run " + converter.DistanceNeedToObtainSpecificVO2MaxWithCooperTest(74, false) + " meters",
+    "With VO2max 74 you must run " + converter.DistanceNeedToObtainSpecificVO2MaxWithCooperTest(74, true) + " kms",
 ];
 for (let i = 0; i < conversions.length; i++)
 {
