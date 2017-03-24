@@ -255,6 +255,10 @@ var RunConverter = (function () {
         else
             return min_pace + ":" + sec_pace;
     };
+    /**
+    * @param time: Time total in seconds, use to convert to time HH:MM:SS format
+    * @return Return total seconds in time format. 3600seconds = 01:00:00
+    */
     RunConverter.prototype.GetTimeInSecondsFromTime = function (time) {
         var parts = time.split(":");
         var hour = parts[0]; // 004
@@ -263,6 +267,10 @@ var RunConverter = (function () {
         //Total time (in seconds) = (3600*hour) + (60*min) + sec
         return (3600 * parseInt(hour)) + (60 * parseInt(min)) + parseInt(sec);
     };
+    /**
+    * @param pace_per_km: Time total in seconds to complete one kilometer
+    * @return Return total seconds to use in one km in min/km format. 240 seconds = 04:00
+    */
     RunConverter.prototype.GetTimeInSecondsFromPacePerKm = function (pace_per_km) {
         console.log(pace_per_km);
         var parts = pace_per_km.split(":");
@@ -272,7 +280,12 @@ var RunConverter = (function () {
         //Total time (in seconds) = (3600*hour) + (60*min) + sec
         return (60 * parseInt(min)) + parseInt(sec);
     };
-    //Round value with specific decimals
+    /**
+    * Round value with specific decimals
+    * @param pace_per_km: Time total in seconds to complete one kilometer
+    * @param pace_per_km: Time total in seconds to complete one kilometer
+    * @return Return result with select digit total. For example result 182.3453 with digit = 2 => 182.34
+    */
     RunConverter.prototype.GetDoubleValue = function (value, digit) {
         var number;
         if (value == null)
@@ -281,12 +294,27 @@ var RunConverter = (function () {
             number = value;
         return (Math.round(number * 100) / 100).toFixed(digit);
     };
+    /**
+    * Convert distance in kms to meters
+    * @param distance: Distance in kilometers
+    * @return Distance in meters. 1km = 1000m
+    */
     RunConverter.prototype.GetDistanceinMeters = function (distance) {
         return +distance * 1000;
     };
+    /**
+    * Convert distance in meters from kms
+    * @param distance: Distance in metres
+    * @return Distance in kms. 1000m = 1km
+    */
     RunConverter.prototype.GetDistanceInKms = function (meters) {
         return +meters / 1000;
     };
+    /**
+    *
+    * @param number: Number to use to return with two digits
+    * @return Value in string format with 2 chars length. 9 = "09"
+    */
     RunConverter.prototype.GetWithTwoDigits = function (value) {
         //Remove all decimals before than asign correct format
         value = this.RemoveDecimalValue(value);
@@ -313,7 +341,12 @@ var conversions = [
     "Run to 382:56:00 time and 6054kms in " + converter.TimeAndKilometersToPacePerKm("382:56:00", 6054) + "min/km",
     //Steps
     "14500 steps in 20kms: " + converter.StepsPerKmFromTotalStepsAndDistanceKm(20, 14500) + " steps/km",
-    "14500 steps in 1h18min00sg: " + converter.StepsPerMinuteFromTotalStepsAndTime("01:18:00", 14500) + " steps/min"
+    "14500 steps in 1h18min00sg: " + converter.StepsPerMinuteFromTotalStepsAndTime("01:18:00", 14500) + " steps/min",
+    //VO2 max
+    "3850 metres in 12 minutes (Test cooper): " + converter.VO2MaxInCooperTest(3850) + " ml/kg/min",
+    "2000 metres in 12 minutes (Test cooper): " + converter.VO2MaxInCooperTest(2000) + " ml/kg/min",
+    "With VO2max 74 you must run " + converter.DistanceNeedToObtainSpecificVO2MaxWithCooperTest(74, false) + " meters",
+    "With VO2max 74 you must run " + converter.DistanceNeedToObtainSpecificVO2MaxWithCooperTest(74, true) + " kms",
 ];
 for (var i = 0; i < conversions.length; i++) {
     document.write(conversions[i] + "<br/>");
