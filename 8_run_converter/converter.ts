@@ -265,8 +265,8 @@ class RunConverter
      * @return Meters
      */
     ConvertMilesToMeters(miles) {
-        miles = parseInt(miles);
-        return String(miles/1609.34);
+        miles = parseFloat(miles);
+        return String(miles/0.000621371);
     }
 
     /**
@@ -274,8 +274,8 @@ class RunConverter
      * @return Miles
      */
     ConvertMetersToMiles(meters) {
-        meters = parseInt(meters);
-        return String(meters*1609.34);
+        meters = parseFloat(meters);
+        return String(meters*0.000621371);
     }
 
     /**
@@ -434,7 +434,12 @@ let conversions =
     //Feets - Metres
     "1 meter = " + converter.ConvertMetersToFeets(1)+ " feets.",
     "1 feet = " + converter.ConvertFeetsToMeters(1)+ " meters.",
+     //Feets - Metres
+    "3400 meters = " + converter.ConvertMetersToMiles(3400)+ " miles.",
+    "8 miles = " + converter.ConvertMilesToMeters(8)+ " meters.",
 ];
+
+      
 for (let i = 0; i < conversions.length; i++)
 {
   document.write(conversions[i] + "<br/>");
