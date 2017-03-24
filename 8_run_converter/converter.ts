@@ -434,7 +434,8 @@ let conversions =
     //Feets - Metres
     "1 meter = " + converter.ConvertMetersToFeets(1)+ " feets.",
     "1 feet = " + converter.ConvertFeetsToMeters(1)+ " meters.",
-     //Feets - Metres
+
+     //Miles - Metres
     "3400 meters = " + converter.ConvertMetersToMiles(3400)+ " miles.",
     "8 miles = " + converter.ConvertMilesToMeters(8)+ " meters.",
 ];
@@ -445,22 +446,24 @@ for (let i = 0; i < conversions.length; i++)
   document.write(conversions[i] + "<br/>");
 }
 
+//Karvonen
+document.write("Low 29ppm and max 174ppm in 70%: " + converter.ObtainFCZoneWithPercent(70, 29, 174) + "<br/>");
+let fc_data = converter.ObtainResumeOfFCZones(29,174);
+document.write("*****************************************" + "<br/>");
+document.write("Low 29ppm and max 174ppm in all zones" + "<br/>");
+document.write("*****************************************" + "<br/>");
+for (let i = 0; i < fc_data.length; i++)
+{ 
+    document.write(String(fc_data[i]) + "<br/>");
+}
+
 
 
 
         /*
 
 
-        //Karvonen
-        System.out.println("Low 29ppm and max 174ppm in 70%: " + converter.ObtainFCZoneWithPercent(70, 29, 174));
-        ArrayList<String> fc_data = converter.ObtainResumeOfFCZones(29,174);
-        System.out.println("*****************************************");
-        System.out.println("Low 29ppm and max 174ppm in all zones");
-        System.out.println("*****************************************");
-        for (int i = 0; i < fc_data.size(); i++)
-        {
-            System.out.println(fc_data.get(i));
-        }
+        
 
         
 
