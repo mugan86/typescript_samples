@@ -214,6 +214,22 @@ var RunConverter = (function () {
         return String(meters * 3.28084);
     };
     /**
+    * @param miles Miles to convert to metres
+    * @return Meters
+    */
+    RunConverter.prototype.ConvertMilesToMeters = function (miles) {
+        miles = parseInt(miles);
+        return String(miles / 1609.34);
+    };
+    /**
+     * @param meters meters to convert to miles
+     * @return Miles
+     */
+    RunConverter.prototype.ConvertMetersToMiles = function (meters) {
+        meters = parseInt(meters);
+        return String(meters * 1609.34);
+    };
+    /**
      * @param yards Yards to convert to metres
      * @return Meters
      */
@@ -347,21 +363,17 @@ var conversions = [
     "2000 metres in 12 minutes (Test cooper): " + converter.VO2MaxInCooperTest(2000) + " ml/kg/min",
     "With VO2max 74 you must run " + converter.DistanceNeedToObtainSpecificVO2MaxWithCooperTest(74, false) + " meters",
     "With VO2max 74 you must run " + converter.DistanceNeedToObtainSpecificVO2MaxWithCooperTest(74, true) + " kms",
+    //Yards - Metres
+    "1 meter = " + converter.ConvertMetersToYards(1) + " yards.",
+    "1 yards = " + converter.ConvertYardsToMeters(1) + " meters.",
+    //Feets - Metres
+    "1 meter = " + converter.ConvertMetersToFeets(1) + " feets.",
+    "1 feet = " + converter.ConvertFeetsToMeters(1) + " meters.",
 ];
 for (var i = 0; i < conversions.length; i++) {
     document.write(conversions[i] + "<br/>");
 }
 /*
-
-
-System.out.println("14500 steps in 20kms: " + converter.StepsPerKmFromTotalStepsAndDistanceKm(20, 14500) + " steps/km");
-System.out.println("14500 steps in 1h18min00sg: " + converter.StepsPerMinuteFromTotalStepsAndTime("01:18:00", 14500) + " steps/min");
-
-
-//VO2 max
-System.out.println("3850 metres in 12 minutes (Test cooper): " + converter.VO2MaxInCooperTest(3850) + " ml/kg/min");
-System.out.println("With VO2max 74 you must run " + converter.DistanceNeedToObtainSpecificVO2MaxWithCooperTest(74, false) + " meters");
-System.out.println("With VO2max 74 you must run " + converter.DistanceNeedToObtainSpecificVO2MaxWithCooperTest(74, true) + " kms");
 
 
 //Karvonen
@@ -375,12 +387,6 @@ for (int i = 0; i < fc_data.size(); i++)
     System.out.println(fc_data.get(i));
 }
 
-//Yards - Metres
-System.out.println("1 meter = " + converter.ConvertMetersToYards(1)+ " yards.");
-System.out.println("1 yards = " + converter.ConvertYardsToMeters(1)+ " meters.");
 
-//Feets - Metres
-System.out.println("1 meter = " + converter.ConvertMetersToFeets(1)+ " feets.");
-System.out.println("1 feet = " + converter.ConvertFeetsToMeters(1)+ " meters.");
 
 */
