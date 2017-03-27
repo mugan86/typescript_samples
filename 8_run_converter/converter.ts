@@ -363,7 +363,7 @@ class RunConverter
     */
     GetClimbPercentage(distanceInMetres, Climb)
     {
-        return this.GetDoubleValue((Climb * 100) / distanceInMetres, 3);
+        return this.GetDoubleValue(Climb * 100 / distanceInMetres, 3);
     }
 
     /**
@@ -449,6 +449,13 @@ let conversions =
      //Miles - Metres
     "3400 meters = " + converter.ConvertMetersToMiles(3400)+ " miles.",
     "8 miles = " + converter.ConvertMilesToMeters(8)+ " meters.",
+
+    //Percentage
+    "Climb 10m+ in 100m = " + converter.GetClimbPercentage(10, 100)+ " %.",
+    "Climb 300m+ in 100m = " + converter.GetClimbPercentage(300, 100)+ " %.",
+    "Climb 500m+ in 1400m = " + converter.GetClimbPercentage(1400, 500)+ " %.",
+    "Climb 100m+ in 100m = " + converter.GetClimbPercentage(500, 11000)+ " %.",
+
 ];
 
       
