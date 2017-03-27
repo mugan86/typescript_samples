@@ -360,6 +360,7 @@ class RunConverter
     * @param distanceinMetres: Distance in metres
     * @param Climb: Climb Metres (or descent, pass "-" value)
     * @return Climb / Descent percentage
+    http://www.aristasur.com/contenido/como-calcular-la-pendiente-de-un-terreno
     */
     GetClimbPercentage(distanceInMetres, Climb)
     {
