@@ -356,6 +356,17 @@ class RunConverter
     }
 
     /**
+    * Get Climb Percentage (%)
+    * @param distanceinMetres: Distance in metres
+    * @param Climb: Climb Metres (or descent, pass "-" value)
+    * @return Climb / Descent percentage
+    */
+    GetClimbPercentage(distanceInMetres, Climb)
+    {
+        return this.GetDoubleValue((Climb * 100) / distanceInMetres, 3);
+    }
+
+    /**
     * Round value with specific decimals
     * @param pace_per_km: Time total in seconds to complete one kilometer
     * @param pace_per_km: Time total in seconds to complete one kilometer
