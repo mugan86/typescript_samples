@@ -301,6 +301,7 @@ var RunConverter = (function () {
     * @param distanceinMetres: Distance in metres
     * @param Climb: Climb Metres (or descent, pass "-" value)
     * @return Climb / Descent percentage
+    * vertical distance (m) · 100/horizontal distance = climb%
     */
     RunConverter.prototype.GetClimbPercentage = function (distanceInMetres, Climb) {
         return this.GetDoubleValue(Climb * 100 / distanceInMetres, 3);
@@ -382,10 +383,10 @@ var conversions = [
     "3400 meters = " + converter.ConvertMetersToMiles(3400) + " miles.",
     "8 miles = " + converter.ConvertMilesToMeters(8) + " meters.",
     //Percentage
-    "Climb 10m+ in 100m = " + converter.GetClimbPercentage(10, 100) + " %.",
-    "Climb 300m+ in 100m = " + converter.GetClimbPercentage(300, 100) + " %.",
-    "Climb 500m+ in 1400m = " + converter.GetClimbPercentage(1400, 500) + " %.",
-    "Climb 100m+ in 100m = " + converter.GetClimbPercentage(500, 11000) + " %.",
+    "Climb 100m+ in 1000m = " + converter.GetClimbPercentage(1000, 100) + " %.",
+    "Climb 300m+ in 100m = " + converter.GetClimbPercentage(100, 300) + " %.",
+    "Climb 500m+ in 20000m = " + converter.GetClimbPercentage(20000, 500) + " %.",
+    "Climb 500m+ in 11000m = " + converter.GetClimbPercentage(11000, 500) + " %.",
 ];
 for (var i = 0; i < conversions.length; i++) {
     document.write(conversions[i] + "<br/>");

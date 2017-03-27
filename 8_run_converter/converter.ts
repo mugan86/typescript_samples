@@ -360,7 +360,7 @@ class RunConverter
     * @param distanceinMetres: Distance in metres
     * @param Climb: Climb Metres (or descent, pass "-" value)
     * @return Climb / Descent percentage
-    http://www.aristasur.com/contenido/como-calcular-la-pendiente-de-un-terreno
+    * vertical distance (m) · 100/horizontal distance = climb%
     */
     GetClimbPercentage(distanceInMetres, Climb)
     {
@@ -401,7 +401,7 @@ class RunConverter
     }
 
     /**
-    * 
+    *
     * @param number: Number to use to return with two digits
     * @return Value in string format with 2 chars length. 9 = "09"
     */
@@ -416,7 +416,7 @@ class RunConverter
 
 let converter = new RunConverter();
 
-let conversions = 
+let conversions =
 [
     "15 km/h = " + converter.KilometersPerHourToPaceMinKm(15.0)  + " min/km",
     "4:17 min/km = " +converter.PaceMinKmToKilometersPerHour(4, 17) + "km/h",
@@ -452,14 +452,14 @@ let conversions =
     "8 miles = " + converter.ConvertMilesToMeters(8)+ " meters.",
 
     //Percentage
-    "Climb 10m+ in 100m = " + converter.GetClimbPercentage(10, 100)+ " %.",
-    "Climb 300m+ in 100m = " + converter.GetClimbPercentage(300, 100)+ " %.",
-    "Climb 500m+ in 1400m = " + converter.GetClimbPercentage(1400, 500)+ " %.",
-    "Climb 100m+ in 100m = " + converter.GetClimbPercentage(500, 11000)+ " %.",
+    "Climb 100m+ in 1000m = " + converter.GetClimbPercentage(1000, 100)+ " %.",
+    "Climb 300m+ in 100m = " + converter.GetClimbPercentage(100, 300)+ " %.",
+    "Climb 500m+ in 20000m = " + converter.GetClimbPercentage(20000, 500)+ " %.",
+    "Climb 500m+ in 11000m = " + converter.GetClimbPercentage(11000, 500)+ " %.",
 
 ];
 
-      
+
 for (let i = 0; i < conversions.length; i++)
 {
   document.write(conversions[i] + "<br/>");
@@ -472,7 +472,7 @@ document.write("*****************************************" + "<br/>");
 document.write("Low 29ppm and max 174ppm in all zones" + "<br/>");
 document.write("*****************************************" + "<br/>");
 for (let i = 0; i < fc_data.length; i++)
-{ 
+{
     document.write(String(fc_data[i]) + "<br/>");
 }
 
@@ -482,8 +482,8 @@ for (let i = 0; i < fc_data.length; i++)
         /*
 
 
-        
 
-        
+
+
 
 */
