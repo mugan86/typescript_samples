@@ -309,7 +309,21 @@ var RunConverter = (function () {
             if (distType == 2)
                 distance = this.GetDistanceinMeters(distance);
         }
-        return this.GetDoubleValue(Climb * 100 / distance, 3);
+        return this.GetDoubleValue(Climb * 100 / distance, 2);
+    };
+    /**
+    * Get Climb Percentage (%)
+    * @param distance: Distance total in select format (specific in distType)
+    * @param Climb: Climb Metres total (or descent, pass "-" value)
+    * @param distType: Distance unit (m, mile, km,...)
+    * @return Climb m+ per km
+    */
+    RunConverter.prototype.GetClimbMetersPerKm = function (distance, Climb, distType) {
+        if (distType != 2) {
+            if (distType == 1)
+                distance = this.GetDistanceInKms(distance);
+        }
+        return this.GetDoubleValue(Climb / distance, 2);
     };
     /**
     * Round value with specific decimals
@@ -396,6 +410,15 @@ var conversions = [
     "Climb 300m+ in 0.1km = " + converter.GetClimbPercentage(0.1, 300, 2) + " %.",
     "Climb 500m+ in 20kms = " + converter.GetClimbPercentage(20, 500, 2) + " %.",
     "Climb 500m+ in 11km = " + converter.GetClimbPercentage(11, 500, 2) + " %.",
+    //Climb metres per km
+    "Climb 100m+ in 1000m = " + converter.GetClimbMetersPerKm(1000, 100, 1) + " m+/km.",
+    "Climb 300m+ in 100m = " + converter.GetClimbMetersPerKm(100, 300, 1) + " m+/km.",
+    "Climb 500m+ in 20000m = " + converter.GetClimbMetersPerKm(20000, 500, 1) + " m+/km.",
+    "Climb 500m+ in 11000m = " + converter.GetClimbMetersPerKm(11000, 500, 1) + " m+/km.",
+    "Climb 100m+ in 1km = " + converter.GetClimbMetersPerKm(1, 100, 2) + " m+/km.",
+    "Climb 300m+ in 0.1km = " + converter.GetClimbMetersPerKm(0.1, 300, 2) + " m+/km.",
+    "Climb 500m+ in 20kms = " + converter.GetClimbMetersPerKm(20, 500, 2) + " m+/km.",
+    "Climb 500m+ in 11km = " + converter.GetClimbMetersPerKm(11, 500, 2) + " m+/km.",
 ];
 for (var i = 0; i < conversions.length; i++) {
     document.write(conversions[i] + "<br/>");
