@@ -381,9 +381,9 @@ class RunConverter
     */
     GetClimbMetersPerKm(distance, Climb, distType)
     {
-        if (distType != 1) //Not kms
+        if (distType != 2) //Not metres
         {
-            if (distType == 2) distance = this.GetDistanceInKms(distance);
+            if (distType == 1) distance = this.GetDistanceInKms(distance);
         }
         return this.GetDoubleValue(Climb / distance, 2);
     }
