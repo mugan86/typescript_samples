@@ -369,7 +369,7 @@ class RunConverter
         {
             if (distType == 2) distance = this.GetDistanceinMeters(distance);
         }
-        return this.GetDoubleValue(Climb * 100 / distance, 3);
+        return this.GetDoubleValue(Climb * 100 / distance, 2);
     }
 
     /**
@@ -457,10 +457,14 @@ let conversions =
     "8 miles = " + converter.ConvertMilesToMeters(8)+ " meters.",
 
     //Percentage
-    "Climb 100m+ in 1000m = " + converter.GetClimbPercentage(1000, 100)+ " %.",
-    "Climb 300m+ in 100m = " + converter.GetClimbPercentage(100, 300)+ " %.",
-    "Climb 500m+ in 20000m = " + converter.GetClimbPercentage(20000, 500)+ " %.",
-    "Climb 500m+ in 11000m = " + converter.GetClimbPercentage(11000, 500)+ " %.",
+    "Climb 100m+ in 1000m = " + converter.GetClimbPercentage(1000, 100, 1)+ " %.",
+    "Climb 300m+ in 100m = " + converter.GetClimbPercentage(100, 300, 1)+ " %.",
+    "Climb 500m+ in 20000m = " + converter.GetClimbPercentage(20000, 500, 1)+ " %.",
+    "Climb 500m+ in 11000m = " + converter.GetClimbPercentage(11000, 500, 1)+ " %.",
+    "Climb 100m+ in 1km = " + converter.GetClimbPercentage(1, 100, 2)+ " %.",
+    "Climb 300m+ in 0.1km = " + converter.GetClimbPercentage(0.1, 300, 2)+ " %.",
+    "Climb 500m+ in 20kms = " + converter.GetClimbPercentage(20, 500, 2)+ " %.",
+    "Climb 500m+ in 11km = " + converter.GetClimbPercentage(11, 500, 2)+ " %.",
 
 ];
 
