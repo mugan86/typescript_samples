@@ -357,14 +357,19 @@ class RunConverter
 
     /**
     * Get Climb Percentage (%)
-    * @param distanceinMetres: Distance in metres
+    * @param distance: Distance in select format (specific in distType)
     * @param Climb: Climb Metres (or descent, pass "-" value)
+    * @param distType: Distance unit (m, mile, km,...)
     * @return Climb / Descent percentage
     * vertical distance (m) · 100/horizontal distance = climb%
     */
-    GetClimbPercentage(distanceInMetres, Climb)
+    GetClimbPercentage(distance, Climb, distType)
     {
-        return this.GetDoubleValue(Climb * 100 / distanceInMetres, 3);
+        if (distType != 1) //Not metres
+        {
+            if (distType == 2) distance = this.GetDistanceinMeters(distance);
+        }
+        return this.GetDoubleValue(Climb * 100 / distance, 3);
     }
 
     /**
